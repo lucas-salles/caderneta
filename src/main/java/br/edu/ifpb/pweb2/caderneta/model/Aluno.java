@@ -1,6 +1,7 @@
 package br.edu.ifpb.pweb2.caderneta.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Aluno extends Usuario {
@@ -8,6 +9,9 @@ public class Aluno extends Usuario {
 	
 	private String nome;
 	private String matricula;
+	
+	@ManyToOne
+	private Turma turma;
 	
 	public Aluno() {}
 	
@@ -31,6 +35,14 @@ public class Aluno extends Usuario {
 
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
+	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	@Override

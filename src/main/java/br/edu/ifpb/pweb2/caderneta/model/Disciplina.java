@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Disciplina implements Serializable {
@@ -18,6 +19,9 @@ public class Disciplina implements Serializable {
 	private String codigo;
 	private String curso;
 	private Integer cargaHoraria;
+	
+	@ManyToOne
+	private Turma turma;
 	
 	public Disciplina() {}
 	
@@ -66,6 +70,14 @@ public class Disciplina implements Serializable {
 
 	public void setCargaHoraria(Integer cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
+	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	@Override

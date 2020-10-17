@@ -8,9 +8,12 @@
 	<persistence-unit name="caderneta_PU" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-		<non-jta-data-source>java:caderneta-ds</non-jta-data-source>
+		<non-jta-data-source>java:/caderneta-ds</non-jta-data-source>
 		
-		<class>br.edu.ifpb.pweb2.caderneta.caderneta.model.MinhaEntidadeJPA</class>
+		<class>br.edu.ifpb.pweb2.caderneta.model.Usuario</class>
+		<class>br.edu.ifpb.pweb2.caderneta.model.Aluno</class>
+		<class>br.edu.ifpb.pweb2.caderneta.model.Professor</class>
+		<class>br.edu.ifpb.pweb2.caderneta.model.Coordenador</class>
 		
 		<properties>
 			<!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />-->

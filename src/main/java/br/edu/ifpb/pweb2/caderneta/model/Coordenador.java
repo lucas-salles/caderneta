@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 
 @Entity
 public class Coordenador extends Professor {
+	private static final long serialVersionUID = 1L;
+	
 	private Boolean ativo = true;
 
 	public Coordenador() {}

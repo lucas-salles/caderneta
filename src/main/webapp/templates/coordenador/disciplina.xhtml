@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h1>Disciplina</h1>
+</h:head>
+<h:body>
+	<p:dataTable value="#{consDisciplinasBean.disciplina(id)}"
+		var="disciplina" emptyMessage="Nenhuma disciplina cadastrada"
+		rowHover="false">
+
+		<p:column headerText="Código" style="text-align: center;">
+					#{disciplina.codigo}
+				</p:column>
+
+		<p:column headerText="Nome">
+					#{disciplina.nome}
+				</p:column>
+	</p:dataTable>
+	<p:dataTable value="#{consAlunosBean.Alunos}" var="alunos"
+		emptyMessage="Nenhum aluno cadastrado" rowHover="false">
+
+		<p:column headerText="Nome" style="text-align: center;">
+					#{aluno.nome}
+				</p:column>
+
+		<p:column headerText="Matrícula" style="text-align: center;">
+					#{aluno.matricula}
+				</p:column>
+	</p:dataTable>
+</h:body>
+</html>

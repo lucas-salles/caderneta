@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	<title>Caderneta - Login</title>
+	<h:outputStylesheet library="css" name="master.css" />
+</h:head>
+<h:body>
+	<header>
+		<h1>Login</h1>
+	</header>
+	
+	<p>
+		<a href="alunos/cadastro.xhtml">Cadastro de aluno</a>
+	</p>
+	
+	<main>
+		<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+		<h:form id="login-usuario">
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-3">
+					<p:outputLabel value="Login:" for="login" />
+					<p:inputText value="#{loginUsuarioBean.login}" id="login"
+						required="true" requiredMessage="Login é obrigatório!">
+					</p:inputText>
+				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Senha:" for="senha" />
+					<p:password value="#{loginUsuarioBean.senha}" id="senha"
+						required="true" requiredMessage="Senha é obrigatória!">
+					</p:password>
+				</div>
+			</div>
+			
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-2">
+					<p:commandButton action="#{loginUsuarioBean.valide}" value="Entrar"
+						ajax="false" />
+				</div>
+			</div>
+		</h:form>
+	</main>
+</h:body>
+</html>

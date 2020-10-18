@@ -6,41 +6,13 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Caderneta - Login</title>
+	<title>Caderneta</title>
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<header>
-		<h1>Login</h1>
-	</header>
-	<main>
-		<p:messages closable="true" errorStyle="color:red"
-		infoStyle="color:green" layout="table" />
-		
-		<h:form id="login-usuario">
-			<div class="ui-g ui-fluid">
-				<div class="ui-g-3">
-					<p:outputLabel value="Login:" for="login" />
-					<p:inputText value="#{loginUsuarioBean.login}" id="login"
-						required="true" requiredMessage="Login é obrigatório!">
-					</p:inputText>
-				</div>
-				
-				<div class="ui-g-3">
-					<p:outputLabel value="Senha:" for="senha" />
-					<p:password value="#{loginUsuarioBean.senha}" id="senha"
-						required="true" requiredMessage="Senha é obrigatória!">
-					</p:password>
-				</div>
-			</div>
-			
-			<div class="ui-g ui-fluid">
-				<div class="ui-g-2">
-					<p:commandButton action="#{loginUsuarioBean.valide}" value="Entrar"
-						ajax="false" />
-				</div>
-			</div>
-		</h:form>
-	</main>
+	<ul>
+		<li><a href="alunos/cadastro.xhtml">Cadastro</a></li>
+		<li><a href="login.xhtml">Login</a></li>
+	</ul>
 </h:body>
 </html>

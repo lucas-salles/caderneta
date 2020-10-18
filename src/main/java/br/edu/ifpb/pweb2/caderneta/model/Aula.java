@@ -3,6 +3,7 @@ package br.edu.ifpb.pweb2.caderneta.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,17 +21,18 @@ public class Aula implements Serializable {
 	private Integer id;
 	private String assunto;
 	
+	@Column(name = "dt_aula")
 	@Temporal(TemporalType.DATE)
-	private Date data;
+	private Date dataAula;
 	
 	@ManyToOne
 	private Turma turma;
 	
 	public Aula() {}
 
-	public Aula(String assunto, Date data) {
+	public Aula(String assunto, Date dataAula) {
 		this.assunto = assunto;
-		this.data = data;
+		this.dataAula = dataAula;
 	}
 
 	public Integer getId() {
@@ -49,12 +51,12 @@ public class Aula implements Serializable {
 		this.assunto = assunto;
 	}
 
-	public Date getData() {
-		return data;
+	public Date getDataAula() {
+		return dataAula;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataAula(Date dataAula) {
+		this.dataAula = dataAula;
 	}
 
 	public Turma getTurma() {
@@ -67,6 +69,6 @@ public class Aula implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Aula [id=" + id + ", assunto=" + assunto + ", data=" + data + "]";
+		return "Aula [id=" + id + ", assunto=" + assunto + ", data=" + dataAula + "]";
 	}
 }

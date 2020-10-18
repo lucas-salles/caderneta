@@ -31,6 +31,9 @@ public class Turma implements Serializable {
 	@ManyToMany(mappedBy = "turmas")
 	private List<Professor> professores;
 	
+	@OneToMany(mappedBy = "turma")
+	private List<Nota> notas;
+	
 	public Turma() {}
 	
 	public Turma(String codigo) {
@@ -147,6 +150,14 @@ public class Turma implements Serializable {
 
 	public void setProfessores(List<Professor> professores) {
 		this.professores = professores;
+	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
 	}
 
 	@Override

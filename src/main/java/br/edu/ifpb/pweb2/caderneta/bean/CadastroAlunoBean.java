@@ -43,7 +43,7 @@ public class CadastroAlunoBean extends GenericCadernetaBean implements Serializa
 		aluno = new Aluno();
 
 		// Retorna para página de login
-		return "/login?faces-redirect=true";
+		return "/index?faces-redirect=true";
 	}
 	
 	public Aluno getAluno() {

@@ -18,4 +18,14 @@ public class UsuarioDAO extends GenericDAO<Usuario, Integer> {
 			return null;
 		}
 	}
+	
+	public String getDtype(Usuario usuario) {
+		try{
+			Query q = entityManager.createQuery("select u.dtype from Usuario u where u.login= :x");
+			q.setParameter("x", usuario.getId());
+			return (String) q.getSingleResult();
+		}catch(NoResultException e){
+			return null;
+		}
+	}
 }

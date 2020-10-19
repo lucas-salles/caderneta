@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
-import javax.inject.Named;
 
-@Named
 @Entity
 public class Professor extends Usuario {
 	private static final long serialVersionUID = 1L;

@@ -40,10 +40,6 @@ public class UsuarioController implements Serializable {
 	public Usuario findByLoginAndPassword(String login, String senha) {
 		return usuarioDAO.findByLoginAndPassword(login, senha);
 	}
-	
-	public String getDtype(Usuario usuario) {
-		return usuarioDAO.getDtype(usuario);
-	}
 
 	@Transactional
 	public Usuario insert(Usuario usuario) {

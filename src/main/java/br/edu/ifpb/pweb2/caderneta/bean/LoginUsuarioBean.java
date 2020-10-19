@@ -30,7 +30,6 @@ public class LoginUsuarioBean extends GenericCadernetaBean implements Serializab
 		Usuario u = usuarioController.findByLoginAndPassword(login, senha);
 		
 		if(u != null) {
-			System.out.println(usuarioController.getDtype(u));
 			usuario = u;
 			isLogged = true;
 			return "home?faces-redirect=true";

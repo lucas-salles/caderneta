@@ -1,11 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Caderneta - Cadastro de Professor</title>
+	<h:outputStylesheet library="css" name="master.css" />
+</h:head>	
+<h:body>
 	<h:form>	
 		<h:outputLabel value="ID do Professor: " for="idProf"/>
 		<h:inputText value="#{cadProf.idProf}" id="idProf"/>
@@ -13,4 +17,5 @@
 		<h:inputText value="#{cadProf.idDis}" id="idDis"/>
 		<h:commandLink action="#{cadAula.cadastre}" value="Cadastre" />
 	</h:form>
+</h:body>
 </html>

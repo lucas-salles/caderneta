@@ -18,13 +18,15 @@ public class Usuario implements Serializable {
 	private Integer id;
 	private String login;
 	private String senha;
+	private String tipo;
 	
 	
 	public Usuario() {}
 
-	public Usuario(String login, String senha) {
+	public Usuario(String login, String senha, String tipo) {
 		this.login = login;
 		this.senha = senha;
+		this.tipo = tipo;
 	}
 
 	public Integer getId() {
@@ -53,6 +55,14 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", login=" + login + ", senha=" + senha + "]";
+		return "Usuario [id=" + id + ", login=" + login + ", senha=" + senha + ", tipo=" + tipo + "]";
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 }

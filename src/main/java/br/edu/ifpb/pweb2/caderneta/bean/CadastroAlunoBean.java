@@ -31,6 +31,7 @@ public class CadastroAlunoBean extends GenericCadernetaBean implements Serializa
 	public String cadastrar() {		
 		// Usa o dao para inserir o aluno
 		Integer id = aluno.getId();
+		aluno.setTipo("Aluno");
 		alunoController.saveOrUpdate(aluno);
 		
 		this.KeepMessages();

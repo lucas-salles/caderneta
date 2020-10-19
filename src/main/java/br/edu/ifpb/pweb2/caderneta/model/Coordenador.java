@@ -10,8 +10,8 @@ public class Coordenador extends Professor {
 
 	public Coordenador() {}
 
-	public Coordenador(String login, String senha, String nome, String email) {
-		super(login, senha, nome, email);
+	public Coordenador(String login, String senha, String tipo, String nome, String email) {
+		super(login, senha, tipo, nome, email);
 	}
 
 	public Boolean getAtivo() {

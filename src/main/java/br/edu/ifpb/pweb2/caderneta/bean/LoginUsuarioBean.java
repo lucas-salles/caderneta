@@ -32,7 +32,7 @@ public class LoginUsuarioBean extends GenericCadernetaBean implements Serializab
 		if(u != null) {
 			usuario = u;
 			isLogged = true;
-			return "home?faces-redirect=true";
+			return "/home?faces-redirect=true";
 		}
 		
 		this.addInfoMessage("Usuário não encontrado");

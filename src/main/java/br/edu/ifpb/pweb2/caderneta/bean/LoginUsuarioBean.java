@@ -7,6 +7,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.pweb2.caderneta.controller.UsuarioController;
+import br.edu.ifpb.pweb2.caderneta.model.Aluno;
+import br.edu.ifpb.pweb2.caderneta.model.Coordenador;
+import br.edu.ifpb.pweb2.caderneta.model.Professor;
 import br.edu.ifpb.pweb2.caderneta.model.Usuario;
 
 @Named(value = "loginUsuarioBean")
@@ -16,11 +19,16 @@ public class LoginUsuarioBean extends GenericCadernetaBean implements Serializab
 	
 	private String login;
 	private String senha;
-	private Boolean isLogged = false;
 	
 	@Inject
-	@Named("usuario")
-	private Usuario usuario;
+	private Aluno aluno;
+	
+	@Inject
+	@Named("professor")
+	private Professor professor;
+	
+	@Inject
+	private Coordenador coordenador;
 	
 	@Inject
 	private UsuarioController usuarioController;
@@ -30,9 +38,16 @@ public class LoginUsuarioBean extends GenericCadernetaBean implements Serializab
 		Usuario u = usuarioController.findByLoginAndPassword(login, senha);
 		
 		if(u != null) {
-			usuario = u;
-			isLogged = true;
-			return "/home?faces-redirect=true";
+			if(u.getTipo().equals("Coordenador")) {
+				coordenador = (Coordenador) u;
+				return "/home/homeCoordenador?faces-redirect=true";
+			} else if(u.getTipo().equals("Professor")) {
+				professor = (Professor) u;
+				return "/home/homeProfessor?faces-redirect=true";
+			} else {
+				aluno = (Aluno) u;
+				return "/home/homeAluno?faces-redirect=true";
+			}
 		}
 		
 		this.addInfoMessage("Usuário não encontrado");
@@ -62,22 +77,32 @@ public class LoginUsuarioBean extends GenericCadernetaBean implements Serializab
 	}
 
 
-	public Boolean getIsLogged() {
-		return isLogged;
+	public Aluno getAluno() {
+		return aluno;
 	}
 
 
-	public void setIsLogged(Boolean isLogged) {
-		this.isLogged = isLogged;
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Professor getProfessor() {
+		return professor;
 	}
 
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
+
+	public Coordenador getCoordenador() {
+		return coordenador;
+	}
+
+
+	public void setCoordenador(Coordenador coordenador) {
+		this.coordenador = coordenador;
 	}
 }

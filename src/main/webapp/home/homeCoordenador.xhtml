@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Caderneta - Home</title>
+	<h:outputStylesheet library="css" name="master.css" />
+</h:head>
+<h:body>
+	<h1>Olá, #{loginUsuarioBean.coordenador.nome}</h1>
+	
+	<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+	<ul>
+		<li>
+			<a href="/caderneta/coordenador/cadDisciplina.xhtml">Cadastrar disciplina</a>
+		</li>
+		<li>
+			<a href="/caderneta/coordenador/disciplinas.xhtml">Consultar disciplinas</a>
+		</li>
+		<li>
+			<a href="/caderneta/coordenador/cadProfDisc.xhtml">Cadastrar professor em disciplina</a>
+		</li>
+		<li>
+			<a href="/caderneta/coordenador/matAluno.xhtml">Matricular aluno</a>
+		</li>
+		<li>
+			<a href="/caderneta/coordenador/alunos.xhtml">Consultar alunos</a>
+		</li>
+	</ul>
+</h:body>
+</html>

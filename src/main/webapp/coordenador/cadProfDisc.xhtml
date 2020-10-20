@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Caderneta - Cadastro de Professor em Disiplina</title>
+	<h:outputStylesheet library="css" name="master.css" />
+</h:head>	
+<h:body>
+	<header>
+		<h1>Cadastro de Professor em Disciplina</h1>
+	</header>
+	
+	<main>
+		<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+		<h:form id="cad-prof-disciplina">
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-3">
+					<p:outputLabel value="Turma:" for="turma" />
+					<p:selectOneMenu id="turma" value="#{cadProfDisciplinaBean.codigoTurma}" rendered="true" requiredMessage="Turma é obrigatória">
+						<f:selectItem noSelectionOption="true" 
+							itemLabel="--Selecione a turma--" itemValue="#{null}"/>
+						<f:selectItems value="#{cadProfDisciplinaBean.turmas}"/>
+					</p:selectOneMenu>
+				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Disicplina:" for="disciplina" />
+					<p:selectOneMenu id="disciplina" value="#{cadProfDisciplinaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
+						<f:selectItem noSelectionOption="true" 
+							itemLabel="--Selecione a disciplina--" itemValue="#{null}"/>
+						<f:selectItems value="#{cadProfDisciplinaBean.disciplinas}"/>
+					</p:selectOneMenu>
+				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Professores:" for="professor" />
+					<p:selectOneMenu id="professor" value="#{cadProfDisciplinaBean.nomeProfessor}" rendered="true" requiredMessage="Professor é obrigatório">
+						<f:selectItem noSelectionOption="true" 
+							itemLabel="--Selecione o professor--" itemValue="#{null}"/>
+						<f:selectItems value="#{cadProfDisciplinaBean.professores}"/>
+					</p:selectOneMenu>
+				</div>
+			</div>
+			
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-2">
+					<p:commandButton action="#{cadProfDisciplinaBean.cadastrar}" value="Salvar"
+						ajax="false" />
+				</div>
+			</div>
+		</h:form>
+	</main>
+</h:body>
+</html>

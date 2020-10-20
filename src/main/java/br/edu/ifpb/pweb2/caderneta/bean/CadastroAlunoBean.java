@@ -29,7 +29,6 @@ public class CadastroAlunoBean extends GenericCadernetaBean implements Serializa
 	}
 	
 	public String cadastrar() {		
-		// Usa o dao para inserir o aluno
 		Integer id = aluno.getId();
 		aluno.setTipo("Aluno");
 		alunoController.saveOrUpdate(aluno);
@@ -40,11 +39,9 @@ public class CadastroAlunoBean extends GenericCadernetaBean implements Serializa
 		else
 			this.addInfoMessage("Aluno atualizado com sucesso!");
 		
-		// Limpa objeto do formulário
 		aluno = new Aluno();
 
-		// Retorna para página de login
-		return "/index?faces-redirect=true";
+		return "alunos?faces-redirect=true";
 	}
 	
 	public Aluno getAluno() {

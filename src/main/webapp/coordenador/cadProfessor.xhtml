@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Caderneta - Cadastro de Professor</title>
+	<h:outputStylesheet library="css" name="master.css" />
+</h:head>
+<h:body>
+	<header>
+		<h1>Cadastro de Professor</h1>
+	</header>
+	
+	<main>
+		<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+		<h:form id="cad-aluno">
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-3">
+					<p:outputLabel value="Login:" for="login" />
+					<p:inputText value="#{cadProfessorBean.professor.login}" id="login"
+						required="true" requiredMessage="Login é obrigatório!">
+					</p:inputText>
+				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Senha:" for="senha" />
+					<p:password value="#{cadProfessorBean.professor.senha}" id="senha"
+						required="true" requiredMessage="Senha é obrigatória!">
+					</p:password>
+				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Nome:" for="nome" />
+					<p:inputText value="#{cadProfessorBean.professor.nome}" id="nome"
+						required="true" requiredMessage="Nome é obrigatório!">
+					</p:inputText>
+				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Email:" for="email" />
+					<p:inputText value="#{cadProfessorBean.professor.email}" id="email"
+						required="true" requiredMessage="Email é obrigatório!">
+					</p:inputText>
+				</div>
+			</div>
+			
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-2">
+					<p:commandButton action="#{cadProfessorBean.cadastrar}" value="Cadastrar"
+						ajax="false" />
+				</div>
+			</div>
+		</h:form>
+	</main>
+</h:body>
+</html>

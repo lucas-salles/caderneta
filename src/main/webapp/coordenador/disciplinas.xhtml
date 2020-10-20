@@ -4,38 +4,62 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+	
+<f:metadata>
+	<f:viewParam name="id" value="#{consDisciplinaBean.id}" />
+	<f:viewAction action="#{consDisciplinaBean.init}" />
+</f:metadata>
 
 <h:head>
 	<title>Caderneta - Disciplinas</title>
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Suas Discliplinas</h1>
+	<h1>Discliplinas</h1>
 	
-	<p:dataTable value="#{consDisciplinasBean.Disciplinas}"
-		var="disciplina" emptyMessage="Nenhuma disciplina cadastrada"
-		rowHover="true">
+	<p>
+		<a href="cadDisciplina.xhtml">Nova disciplina</a>
+	</p>
+	
+	<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
 
-		<p:column headerText="Código" style="text-align: center;">
-					#{disciplina.codigo}
+	<p:panel id="panel" header="Disciplinas cadastradas"
+		style="background-color:#ededed">
+
+		<h:form id="cons-disciplina">
+			<p:dataTable value="#{consDisciplinaBean.disciplinas}" var="disciplina"
+				emptyMessage="Nenhuma disciplina cadastrada" rowHover="true">
+				<f:facet name="header">Disciplinas</f:facet>
+
+				<p:column headerText="ID">
+					#{disciplina.id}
 				</p:column>
 
-		<p:column headerText="Nome">
+				<p:column headerText="Nome">
 					#{disciplina.nome}
 				</p:column>
-
-		<p:column headerText="Curso">
+				
+				<p:column headerText="Código">
+					#{disciplina.codigo}
+				</p:column>
+				
+				<p:column headerText="Curso">
 					#{disciplina.curso}
 				</p:column>
-
-		<p:column headerText="Carga Horária">
+				
+				<p:column headerText="Carga horária">
 					#{disciplina.cargaHoraria}
 				</p:column>
-		<p:column headerText="Ações" style="text-align: center;">
-			<p:commandButton
-				action="#{consDisciplinasBean.visualizar(disciplina)}"
-				value="Visualizar" icon="fa fa-search-plus" ajax="false" />
-		</p:column>
-	</p:dataTable>
+
+				<p:column headerText="Ações">
+					<p:commandButton action="#{consDisciplinaBean.excluir(disciplina)}"
+						title="Excluir" icon="fa fa-trash" ajax="false" />
+					<p:commandButton action="#{consDisciplinaBean.editar(disciplina)}"
+						title="Editar" icon="fa fa-edit" ajax="false" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:panel>
 </h:body>
 </html>

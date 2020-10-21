@@ -61,7 +61,7 @@ public class CadastroProfessorDisciplinaBean extends GenericCadernetaBean implem
 			this.KeepMessages();
 			this.addInfoMessage("Professor cadastrado na disciplina com sucesso!");
 			
-			return "/home/homeCoordenador?faces-redirect=true";
+			return "/coordenador/home?faces-redirect=true";
 		} else {
 			this.KeepMessages();
 			this.addInfoMessage("Professor já foi cadastrado na disciplina!");

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Caderneta - Cadastro de Turma</title>
+	<h:outputStylesheet library="css" name="master.css" />
+</h:head>	
+<h:body>
+	<header>
+		<h1>Cadastro de Turma</h1>
+	</header>
+	
+	<main>
+		<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+		<h:form id="cad-turma">
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-3">
+					<p:outputLabel value="Código:" for="codigo" />
+					<p:inputText value="#{cadTurmaBean.turma.codigo}" id="codigo"
+						required="true" requiredMessage="Código é obrigatório!">
+					</p:inputText>
+				</div>
+			</div>
+			
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-2">
+					<p:commandButton action="#{cadTurmaBean.cadastrar}" value="Salvar"
+						ajax="false" />
+				</div>
+			</div>
+		</h:form>
+	</main>
+</h:body>
+</html>

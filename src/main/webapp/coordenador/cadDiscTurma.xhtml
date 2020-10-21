@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Caderneta - Cadastro de Disciplina em Turma</title>
+	<h:outputStylesheet library="css" name="master.css" />
+</h:head>	
+<h:body>
+	<header>
+		<h1>Cadastro de Disciplina em Turma</h1>
+	</header>
+	
+	<main>
+		<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+		<h:form id="cad-disc-turma">
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-3">
+					<p:outputLabel value="Turma:" for="turma" />
+					<p:selectOneMenu id="turma" value="#{cadDiscTurmaBean.codigoTurma}" rendered="true" requiredMessage="Turma é obrigatória">
+						<f:selectItem noSelectionOption="true" 
+							itemLabel="--Selecione a turma--" itemValue="#{null}"/>
+						<f:selectItems value="#{cadDiscTurmaBean.turmas}"/>
+					</p:selectOneMenu>
+				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Disicplina:" for="disciplina" />
+					<p:selectOneMenu id="disciplina" value="#{cadDiscTurmaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
+						<f:selectItem noSelectionOption="true" 
+							itemLabel="--Selecione a disciplina--" itemValue="#{null}"/>
+						<f:selectItems value="#{cadDiscTurmaBean.disciplinas}"/>
+					</p:selectOneMenu>
+				</div>
+			</div>
+			
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-2">
+					<p:commandButton action="#{cadDiscTurmaBean.cadastrar}" value="Salvar"
+						ajax="false" />
+				</div>
+			</div>
+		</h:form>
+	</main>
+</h:body>
+</html>

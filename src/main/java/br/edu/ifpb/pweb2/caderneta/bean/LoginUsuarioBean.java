@@ -40,13 +40,13 @@ public class LoginUsuarioBean extends GenericCadernetaBean implements Serializab
 		if(u != null) {
 			if(u.getTipo().equals("Coordenador")) {
 				coordenador = (Coordenador) u;
-				return "/home/homeCoordenador?faces-redirect=true";
+				return "/coordenador/home?faces-redirect=true";
 			} else if(u.getTipo().equals("Professor")) {
 				professor = (Professor) u;
-				return "/home/homeProfessor?faces-redirect=true";
+				return "/professor/home?faces-redirect=true";
 			} else {
 				aluno = (Aluno) u;
-				return "/home/homeAluno?faces-redirect=true";
+				return "/aluno/home?faces-redirect=true";
 			}
 		}
 		

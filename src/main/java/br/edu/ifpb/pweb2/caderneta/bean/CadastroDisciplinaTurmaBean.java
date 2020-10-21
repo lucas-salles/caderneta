@@ -8,53 +8,50 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifpb.pweb2.caderneta.controller.AlunoController;
+import br.edu.ifpb.pweb2.caderneta.controller.DisciplinaController;
 import br.edu.ifpb.pweb2.caderneta.controller.TurmaController;
-import br.edu.ifpb.pweb2.caderneta.model.Aluno;
+import br.edu.ifpb.pweb2.caderneta.model.Disciplina;
 import br.edu.ifpb.pweb2.caderneta.model.Turma;
 import br.edu.ifpb.pweb2.utils.Utils;
 
-@Named(value = "matAlunoBean")
+@Named(value = "cadDiscTurmaBean")
 @ViewScoped
-public class MatricularAlunoBean extends GenericCadernetaBean implements Serializable {
+public class CadastroDisciplinaTurmaBean extends GenericCadernetaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Inject
-	private Aluno aluno;
 	
 	@Inject
 	private Turma turma;
 	
-	private String nomeAluno;
-	private String codigoTurma;
-	
 	@Inject
-	private AlunoController alunoController;
+	private Disciplina disciplina;
 	
 	@Inject
 	private TurmaController turmaController;
 	
+	@Inject
+	private DisciplinaController disciplinaController;
+	
+	private String nomeDisciplina;
+	private String codigoTurma;
+	
 	public String cadastrar() {
-		aluno = alunoController.find(Utils.getId(nomeAluno));
+		disciplina = disciplinaController.find(Utils.getId(nomeDisciplina));
 		turma = turmaController.find(Utils.getId(codigoTurma));
 		
-		aluno.setTurma(turma);
-		turma.add(aluno);
+		disciplina.setTurma(turma);
+		turma.add(disciplina);
 		
-		alunoController.update(aluno);
+		disciplinaController.update(disciplina);
 		turmaController.update(turma);
-		
-		this.KeepMessages();
-		this.addInfoMessage("Aluno matriculado com sucesso!");
 		
 		return "/coordenador/home?faces-redirect=true";
 	}
 	
-	public List<String> getAlunos() {
-		List<String> alunos = new ArrayList<>();
-		for(Aluno a: alunoController.findAll())
-			alunos.add(a.getId() + " - " + a.getNome());
-		return alunos;
+	public List<String> getDisciplinas() {
+		List<String> disciplinas = new ArrayList<>();
+		for(Disciplina d: disciplinaController.findAll())
+			disciplinas.add(d.getId() + " - " + d.getNome());
+		return disciplinas;
 	}
 	
 	public List<String> getTurmas() {
@@ -62,14 +59,6 @@ public class MatricularAlunoBean extends GenericCadernetaBean implements Seriali
 		for(Turma t: turmaController.findAll())
 			turmas.add(t.getId() + " - " + t.getCodigo());
 		return turmas;
-	}
-
-	public Aluno getAluno() {
-		return aluno;
-	}
-
-	public void setAluno(Aluno aluno) {
-		this.aluno = aluno;
 	}
 
 	public Turma getTurma() {
@@ -80,12 +69,20 @@ public class MatricularAlunoBean extends GenericCadernetaBean implements Seriali
 		this.turma = turma;
 	}
 
-	public String getNomeAluno() {
-		return nomeAluno;
+	public Disciplina getDisciplina() {
+		return disciplina;
 	}
 
-	public void setNomeAluno(String nomeAluno) {
-		this.nomeAluno = nomeAluno;
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
+
+	public String getNomeDisciplina() {
+		return nomeDisciplina;
+	}
+
+	public void setNomeDisciplina(String nomeDisciplina) {
+		this.nomeDisciplina = nomeDisciplina;
 	}
 
 	public String getCodigoTurma() {

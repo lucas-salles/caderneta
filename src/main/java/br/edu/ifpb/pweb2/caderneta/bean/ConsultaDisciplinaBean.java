@@ -22,7 +22,6 @@ public class ConsultaDisciplinaBean extends GenericCadernetaBean implements Seri
 	@Inject 
 	private DisciplinaController disciplinaController;
 
-	
 	public void init() {
 		if(id == null)
 			disciplinas = disciplinaController.findAll();

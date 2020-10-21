@@ -12,30 +12,42 @@
 <h:body>
 	<h1>Suas Discliplinas</h1>
 	
-	<p:dataTable value="#{consDisciplinasBean.Disciplinas}"
-		var="disciplina" emptyMessage="Nenhuma disciplina cadastrada"
-		rowHover="false">
+	<p:panel id="panel" header="Disciplinas"
+		style="background-color:#ededed">
 
-		<p:column headerText="Código" style="text-align: center;">
-					#{disciplina.codigo}
+		<h:form id="cons-aluno-disciplina">
+			<p:dataTable value="#{consAlunoDisciplinaBean.disciplinas}" var="disciplina"
+				emptyMessage="Você ainda não foi matriculado em nenhuma disciplina" rowHover="true">
+				<f:facet name="header">Disciplinas</f:facet>
+
+				<p:column headerText="ID">
+					#{disciplina.id}
 				</p:column>
 
-		<p:column headerText="Nome">
+				<p:column headerText="Nome">
 					#{disciplina.nome}
 				</p:column>
-
-		<p:column headerText="Curso">
+				
+				<p:column headerText="Código">
+					#{disciplina.codigo}
+				</p:column>
+				
+				<p:column headerText="Curso">
 					#{disciplina.curso}
 				</p:column>
-
-		<p:column headerText="Carga Horária">
+				
+				<p:column headerText="Carga horária">
 					#{disciplina.cargaHoraria}
 				</p:column>
-		<p:column headerText="Ações" style="text-align: center;">
-			<p:commandButton
-				action="#{consDisciplinasBean.visualizar(disciplina)}"
-				value="Visualizar" icon="fa fa-search-plus" ajax="false" />
-		</p:column>
-	</p:dataTable>
+			</p:dataTable>
+			
+			<div class="ui-g ui-fluid">
+				<div class="ui-g-2">
+					<p:commandButton action="#{consAlunoDisciplinaBean.teste}" value="Teste"
+						ajax="false" />
+				</div>
+			</div>
+		</h:form>
+	</p:panel>
 </h:body>
 </html>

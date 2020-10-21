@@ -10,7 +10,15 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Aluno</h1>
-	<h2>#{loginUsuarioBean.aluno.nome}, #{loginUsuarioBean.usuario.matricula}</h2>
+	<h2>Olá, #{loginUsuarioBean.aluno.nome}</h2>
+	
+	<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+	<ul>
+		<li>
+			<a href="/caderneta/aluno/disciplinas.xhtml">Disciplinas</a>
+		</li>
+	</ul>
 </h:body>
 </html>

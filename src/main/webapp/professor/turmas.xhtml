@@ -51,6 +51,14 @@
 						#{turma.disciplina.nome}
 					</p:column>
 					
+					<p:column headerText="Carga horária">
+						#{turma.disciplina.cargaHoraria}
+					</p:column>
+					
+					<p:column headerText="Alunos matrículados">
+						#{turma.alunos.size()}
+					</p:column>
+					
 					<p:column headerText="Ações">
 						<p:commandButton action="#{consTurmaBean.regNota(turma.disciplina)}" value="Registrar nota"
 							ajax="false" />

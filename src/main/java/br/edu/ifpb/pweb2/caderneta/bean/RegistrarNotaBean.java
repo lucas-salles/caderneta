@@ -52,6 +52,13 @@ public class RegistrarNotaBean extends GenericCadernetaBean implements Serializa
 	}
 
 	public String registrar() {
+		if(turma.getAlunos().isEmpty()) {
+			this.KeepMessages();
+			this.addInfoMessage("Turma sem alunos!");
+			
+			return null;
+		}
+		
 		Aluno aluno = null;
 		Nota nota = null;
 		for (Integer id : alunoNota.keySet()) {

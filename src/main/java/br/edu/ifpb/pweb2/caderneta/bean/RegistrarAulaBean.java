@@ -8,65 +8,70 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.edu.ifpb.pweb2.caderneta.controller.AulaController;
 import br.edu.ifpb.pweb2.caderneta.controller.DisciplinaController;
-import br.edu.ifpb.pweb2.caderneta.controller.TurmaController;
+import br.edu.ifpb.pweb2.caderneta.model.Aula;
 import br.edu.ifpb.pweb2.caderneta.model.Disciplina;
-import br.edu.ifpb.pweb2.caderneta.model.Turma;
 import br.edu.ifpb.pweb2.utils.Utils;
 
-@Named(value = "cadDiscTurmaBean")
+@Named(value = "regAulaBean")
 @ViewScoped
-public class CadastroDisciplinaTurmaBean extends GenericCadernetaBean implements Serializable {
+public class RegistrarAulaBean extends GenericCadernetaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private Turma turma;
+	private Aula aula;
 	
 	@Inject
 	private Disciplina disciplina;
 	
 	@Inject
-	private TurmaController turmaController;
+	private AulaController aulaController;
 	
 	@Inject
 	private DisciplinaController disciplinaController;
 	
+	@Inject
+	private LoginUsuarioBean loginUsuarioBean;
+	
 	private String nomeDisciplina;
-	private String codigoTurma;
 	
 	public String cadastrar() {
 		disciplina = disciplinaController.find(Utils.getId(nomeDisciplina));
-		turma = turmaController.find(Utils.getId(codigoTurma));
 		
-		disciplina.setTurma(turma);
-		turma.add(disciplina);
+		if(disciplina.getTurma() == null) {
+			this.KeepMessages();
+			this.addInfoMessage("Disciplina não possui turma cadastrada. Informe ao coordenador para que ele cadastre uma turma!");
+			
+			return null;
+		}
 		
+		aula.setTurma(disciplina.getTurma());
+		disciplina.getTurma().add(aula);
+		
+		aulaController.saveOrUpdate(aula);
 		disciplinaController.update(disciplina);
-		turmaController.update(turma);
 		
-		return "/coordenador/home?faces-redirect=true";
+		this.KeepMessages();
+		this.addInfoMessage("Aula registrada com sucesso!");
+		
+		this.putFlash("aula", aula);
+		return "regPresenca?faces-redirect=true";
 	}
 	
 	public List<String> getDisciplinas() {
 		List<String> disciplinas = new ArrayList<>();
-		for(Disciplina d: disciplinaController.findAll())
+		for(Disciplina d: loginUsuarioBean.getProfessor().getDisciplinas())
 			disciplinas.add(d.getId() + " - " + d.getNome());
 		return disciplinas;
 	}
-	
-	public List<String> getTurmas() {
-		List<String> turmas = new ArrayList<>();
-		for(Turma t: turmaController.findAll())
-			turmas.add(t.getId() + " - " + t.getCodigo());
-		return turmas;
+
+	public Aula getAula() {
+		return aula;
 	}
 
-	public Turma getTurma() {
-		return turma;
-	}
-
-	public void setTurma(Turma turma) {
-		this.turma = turma;
+	public void setAula(Aula aula) {
+		this.aula = aula;
 	}
 
 	public Disciplina getDisciplina() {
@@ -83,13 +88,5 @@ public class CadastroDisciplinaTurmaBean extends GenericCadernetaBean implements
 
 	public void setNomeDisciplina(String nomeDisciplina) {
 		this.nomeDisciplina = nomeDisciplina;
-	}
-
-	public String getCodigoTurma() {
-		return codigoTurma;
-	}
-
-	public void setCodigoTurma(String codigoTurma) {
-		this.codigoTurma = codigoTurma;
 	}
 }

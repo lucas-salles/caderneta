@@ -10,7 +10,21 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Professor</h1>
-	<h2>#{loginUsuarioBean.professor.nome}, #{loginUsuarioBean.professor.email}</h2>
+	<h1>Olá, #{loginUsuarioBean.professor.nome}</h1>
+	
+	<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+	<ul>
+		<li>
+			<a href="/caderneta/professor/regAula.xhtml">Registrar aula</a>
+		</li>
+		<li>
+			<a href="/caderneta/professor/aulas.xhtml">Aulas</a>
+		</li>
+		<li>
+			<a href="/caderneta/professor/turmas.xhtml">Suas turmas</a>
+		</li>
+	</ul>
 </h:body>
 </html>

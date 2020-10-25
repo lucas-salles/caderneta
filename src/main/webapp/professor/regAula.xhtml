@@ -6,42 +6,49 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Caderneta - Cadastro de Disciplina em Turma</title>
+	<title>Caderneta - Registrar Aula</title>
 	<h:outputStylesheet library="css" name="master.css" />
+	<h:outputScript library="js" name="app.js" />
 </h:head>	
 <h:body>
 	<header>
-		<h1>Cadastro de Disciplina em Turma</h1>
+		<h1>Registrar Aula</h1>
 	</header>
 	
 	<main>
 		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 		
-		<h:form id="cad-disc-turma">
+		<h:form id="reg-aula">
 			<div class="ui-g ui-fluid">
 				<div class="ui-g-3">
-					<p:outputLabel value="Turma:" for="turma" />
-					<p:selectOneMenu id="turma" value="#{cadDiscTurmaBean.codigoTurma}" rendered="true" requiredMessage="Turma é obrigatória">
-						<f:selectItem noSelectionOption="true" 
-							itemLabel="--Selecione a turma--" itemValue="#{null}"/>
-						<f:selectItems value="#{cadDiscTurmaBean.turmas}"/>
-					</p:selectOneMenu>
+					<p:outputLabel value="Assunto:" for="assunto" />
+					<p:inputText value="#{regAulaBean.aula.assunto}" id="assunto"
+						required="true" requiredMessage="Assunto da aula é obrigatório!">
+					</p:inputText>
+				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Data da Aula:" for="data-aula" />
+					<p:calendar required="true"
+						requiredMessage="Data da aula é obrigatória" id="data-aula"
+						showTodayButton="true" timeZone="GMT-3"
+						value="#{regAulaBean.aula.dataAula}" showOn="button" />
 				</div>
 				
 				<div class="ui-g-3">
 					<p:outputLabel value="Disicplina:" for="disciplina" />
-					<p:selectOneMenu id="disciplina" value="#{cadDiscTurmaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
+					<p:selectOneMenu id="disciplina" value="#{regAulaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
 						<f:selectItem noSelectionOption="true" 
 							itemLabel="--Selecione a disciplina--" itemValue="#{null}"/>
-						<f:selectItems value="#{cadDiscTurmaBean.disciplinas}"/>
+						<f:selectItems value="#{regAulaBean.disciplinas}"/>
 					</p:selectOneMenu>
 				</div>
 			</div>
 			
 			<div class="ui-g ui-fluid">
 				<div class="ui-g-2">
-					<p:commandButton action="#{cadDiscTurmaBean.cadastrar}" value="Salvar"
+					<p:commandButton action="#{regAulaBean.cadastrar}" value="Salvar"
 						ajax="false" />
 				</div>
 			</div>

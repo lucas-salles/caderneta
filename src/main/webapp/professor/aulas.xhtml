@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+	<f:viewParam name="id" value="#{consAulaBean.id}" />
+	<f:viewAction action="#{consAulaBean.init}" />
+</f:metadata>
+
+<h:head>
+	<title>Caderneta - Aulas Registradas</title>
+	<h:outputStylesheet library="css" name="master.css" />
+</h:head>
+<h:body>
+	<h1>Aulas Registradas</h1>
+	
+	<p>
+		<a href="regAula.xhtml">Nova aula</a>
+	</p>
+	
+	<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+
+	<p:panel id="panel" header="Aulas registradas"
+		style="background-color:#ededed">
+
+		<h:form id="cons-aulas">
+			<p:dataTable value="#{consAulaBean.aulas}" var="aula"
+				emptyMessage="Nenhuma aula registrada" rowHover="true">
+				<f:facet name="header">Aulas</f:facet>
+
+				<p:column headerText="ID">
+					#{aula.id}
+				</p:column>
+
+				<p:column headerText="Assunto">
+					#{aula.assunto}
+				</p:column>
+				
+				<p:column headerText="Data da Aula" styleClass="columnCenter">
+					<h:outputText value="#{aula.dataAula}">
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Disciplina">
+					#{aula.turma.disciplina.nome}
+				</p:column>
+				
+				<p:column headerText="Ações">				
+					<p:commandButton action="#{consAulaBean.registarPresenca(aula)}" value="Registrar presença"
+						ajax="false" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:panel>
+</h:body>
+</html>

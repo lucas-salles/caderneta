@@ -19,16 +19,7 @@
 		infoStyle="color:green" layout="table" />
 		
 		<h:form id="cad-prof-disciplina">
-			<div class="ui-g ui-fluid">
-				<div class="ui-g-3">
-					<p:outputLabel value="Turma:" for="turma" />
-					<p:selectOneMenu id="turma" value="#{cadProfDisciplinaBean.codigoTurma}" rendered="true" requiredMessage="Turma é obrigatória">
-						<f:selectItem noSelectionOption="true" 
-							itemLabel="--Selecione a turma--" itemValue="#{null}"/>
-						<f:selectItems value="#{cadProfDisciplinaBean.turmas}"/>
-					</p:selectOneMenu>
-				</div>
-				
+			<div class="ui-g ui-fluid">	
 				<div class="ui-g-3">
 					<p:outputLabel value="Disicplina:" for="disciplina" />
 					<p:selectOneMenu id="disciplina" value="#{cadProfDisciplinaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">

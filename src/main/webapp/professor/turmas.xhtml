@@ -4,45 +4,48 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+	
+<f:metadata>
+	<f:viewParam name="id" value="#{consTurmaBea.id}" />
+	<f:viewAction action="#{consTurmaBean.init}" />
+</f:metadata>
 
 <h:head>
 	<title>Caderneta - Turmas</title>
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Disciplina</h1>
+	<h1>Suas Turmas</h1>
 	
-	<p:dataTable value="#{consDisciplinasBean.disciplina(id)}"
-		var="disciplina" emptyMessage="Nenhuma disciplina cadastrada"
-		rowHover="false">
+	<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
 
-		<p:column headerText="Código" style="text-align: center;">
-					#{disciplina.codigo}
+	<p:panel id="panel" header="Turmas"
+		style="background-color:#ededed">
+
+		<h:form id="cons-turmas">
+			<p:dataTable value="#{consTurmaBean.turmas}" var="turma"
+				emptyMessage="Nenhuma turma registrada para você" rowHover="true">
+				<f:facet name="header">Turma</f:facet>
+
+				<p:column headerText="ID">
+					#{turma.id}
 				</p:column>
 
-		<p:column headerText="Nome">
-					#{disciplina.nome}
+				<p:column headerText="Código">
+					#{turma.codigo}
 				</p:column>
-	</p:dataTable>
-	<p:dataTable value="#{consAulasBean.Aulas}" var="aula"
-		emptyMessage="Nenhuma aula cadastrada" rowHover="false">
-
-		<p:column headerText="Assunto" style="text-align: center;">
-					#{aula.assunto}
+				
+				<p:column headerText="Disciplina">
+					#{turma.disciplina.nome}
 				</p:column>
-
-		<p:column headerText="Data" style="text-align: center;">
-			<h:outputText value="#{aula.data}">
-				<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
-			</h:outputText>
-		</p:column>
-	</p:dataTable>
-	<p:dataTable value="#{consDisciplinasBean.Notas}" var="nota"
-		emptyMessage="Nenhuma disciplina cadastrada" rowHover="false">
-
-		<p:column headerText="Nota" style="text-align: center;">
-					#{nota.nota}
+				
+				<p:column headerText="Ações">
+					<p:commandButton action="#{consTurmaBean.regNota(turma.disciplina)}" value="Registrar nota"
+						ajax="false" />
 				</p:column>
-	</p:dataTable>
+			</p:dataTable>
+		</h:form>
+	</p:panel>
 </h:body>
 </html>

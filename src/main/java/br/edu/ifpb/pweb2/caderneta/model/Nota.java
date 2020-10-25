@@ -15,23 +15,18 @@ public class Nota implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private Integer nota;
+	private Double nota;
 	
+	@ManyToOne
 	private Aluno aluno;
-	private Disciplina disciplina;
-	private Professor professor;
 	
 	@ManyToOne
 	private Turma turma;
 	
 	public Nota() {}
 	
-	public Nota(Integer nota, Turma turma, Aluno aluno, Disciplina disciplina, Professor professor) {
+	public Nota(Double nota) {
 		this.nota = nota;
-		this.turma = turma;
-		this.aluno = aluno;
-		this.disciplina = disciplina;
-		this.professor = professor;
 	}
 
 	public Integer getId() {
@@ -42,11 +37,11 @@ public class Nota implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getNota() {
+	public Double getNota() {
 		return nota;
 	}
 
-	public void setNota(Integer nota) {
+	public void setNota(Double nota) {
 		this.nota = nota;
 	}
 
@@ -61,22 +56,6 @@ public class Nota implements Serializable {
 
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
-	}
-
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
 	}
 
 	public Turma getTurma() {

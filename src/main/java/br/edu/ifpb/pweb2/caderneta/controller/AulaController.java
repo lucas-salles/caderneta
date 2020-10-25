@@ -36,6 +36,10 @@ public class AulaController implements Serializable {
 	public Aula find(Integer id) {
 		return aulaDAO.find(id);
 	}
+	
+	public List<Aula> getAulasByTurmaId(Integer id) {
+		return aulaDAO.getAulasByTurmaId(id);
+	}
 
 	@Transactional
 	public Aula insert(Aula aula) {

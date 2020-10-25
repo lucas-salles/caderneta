@@ -1,7 +1,10 @@
 package br.edu.ifpb.pweb2.caderneta.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Turma implements Serializable {
@@ -20,41 +24,22 @@ public class Turma implements Serializable {
 	private Integer id;
 	private String codigo;
 	
+	@OneToOne(mappedBy = "turma")
+	private Disciplina disciplina;
+	
+	@ManyToMany(mappedBy = "turmas", fetch=FetchType.EAGER)
+	private List<Aluno> alunos = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "turma")
+	private List<Aula> aulas = new ArrayList<>();
+	
 	@OneToMany(mappedBy = "turma", fetch=FetchType.EAGER)
-	private List<Disciplina> disciplinas;
-	
-	@OneToMany(mappedBy = "turma")
-	private List<Aluno> alunos;
-	
-	@OneToMany(mappedBy = "turma")
-	private List<Aula> aulas;
-	
-	@ManyToMany(mappedBy = "turmas")
-	private List<Professor> professores;
-	
-	@OneToMany(mappedBy = "turma")
-	private List<Nota> notas;
+	private Set<Nota> notas = new  HashSet<>();
 	
 	public Turma() {}
 	
 	public Turma(String codigo) {
 		this.codigo = codigo;
-	}
-	
-	public void add(Disciplina d) {
-		disciplinas.add(d);
-	}
-	
-	public void remover(Disciplina d) {
-		disciplinas.remove(d);
-	}
-	
-	public Disciplina localizarDisciplina(int id) {
-		for(Disciplina d : disciplinas) {
-			if(d.getId() == id)
-				return d;
-		}
-		return null;
 	}
 	
 	public void add(Aluno a) {
@@ -89,18 +74,18 @@ public class Turma implements Serializable {
 		return null;
 	}
 	
-	public void add(Professor p) {
-		professores.add(p);
+	public void add(Nota n) {
+		notas.add(n);
 	}
 	
-	public void remover(Professor p) {
-		professores.remove(p);
+	public void remover(Nota n) {
+		notas.remove(n);
 	}
 	
-	public Professor localizarProfessor(int id) {
-		for(Professor p : professores) {
-			if(p.getId() == id)
-				return p;
+	public Nota localizarNota(int id) {
+		for(Nota n : notas) {
+			if(n.getId() == id)
+				return n;
 		}
 		return null;
 	}
@@ -121,12 +106,12 @@ public class Turma implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
+	public Disciplina getDisciplina() {
+		return disciplina;
 	}
 
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 	public List<Aluno> getAlunos() {
@@ -145,19 +130,11 @@ public class Turma implements Serializable {
 		this.aulas = aulas;
 	}
 
-	public List<Professor> getProfessores() {
-		return professores;
-	}
-
-	public void setProfessores(List<Professor> professores) {
-		this.professores = professores;
-	}
-
-	public List<Nota> getNotas() {
+	public Set<Nota> getNotas() {
 		return notas;
 	}
 
-	public void setNotas(List<Nota> notas) {
+	public void setNotas(Set<Nota> notas) {
 		this.notas = notas;
 	}
 

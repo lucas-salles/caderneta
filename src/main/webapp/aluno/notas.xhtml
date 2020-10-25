@@ -6,25 +6,32 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Caderneta - Home</title>
+	<title>Caderneta - Notas</title>
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h2>Olá, #{loginUsuarioBean.aluno.nome}</h2>
+	<h1>Suas Notas</h1>
 	
 	<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
-		
-	<ul>
-		<li>
-			<a href="/caderneta/aluno/disciplinas.xhtml">Disciplinas</a>
-		</li>
-		<li>
-			<a href="/caderneta/aluno/notas.xhtml">Suas notas</a>
-		</li>
-		<li>
-			<a href="/caderneta/aluno/faltas.xhtml">Suas faltas</a>
-		</li>
-	</ul>
+
+	<p:panel id="panel" header="Notas"
+		style="background-color:#ededed">
+
+		<h:form id="cons-notas">
+			<p:dataTable value="#{consNotaBean.notas}" var="nota"
+				emptyMessage="Nenhuma nota registrada" rowHover="true">
+				<f:facet name="header">Notas</f:facet>
+
+				<p:column headerText="Nota">
+					#{nota.nota}
+				</p:column>
+				
+				<p:column headerText="Disciplina">
+					#{nota.turma.disciplina.nome}
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</p:panel>
 </h:body>
 </html>

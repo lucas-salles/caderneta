@@ -10,10 +10,8 @@ import javax.inject.Named;
 
 import br.edu.ifpb.pweb2.caderneta.controller.DisciplinaController;
 import br.edu.ifpb.pweb2.caderneta.controller.ProfessorController;
-import br.edu.ifpb.pweb2.caderneta.controller.TurmaController;
 import br.edu.ifpb.pweb2.caderneta.model.Disciplina;
 import br.edu.ifpb.pweb2.caderneta.model.Professor;
-import br.edu.ifpb.pweb2.caderneta.model.Turma;
 import br.edu.ifpb.pweb2.utils.Utils;
 
 @Named(value = "cadProfDisciplinaBean")
@@ -28,12 +26,8 @@ public class CadastroProfessorDisciplinaBean extends GenericCadernetaBean implem
 	@Named("professor")
 	private Professor professor;
 	
-	@Inject
-	private Turma turma;
-	
 	private String nomeDisciplina;
 	private String nomeProfessor;
-	private String codigoTurma;
 	
 	@Inject
 	private DisciplinaController disciplinaController;
@@ -41,22 +35,16 @@ public class CadastroProfessorDisciplinaBean extends GenericCadernetaBean implem
 	@Inject
 	private ProfessorController professorController;
 	
-	@Inject
-	private TurmaController turmaController;
-	
 	public String cadastrar() {
 		disciplina = disciplinaController.find(Utils.getId(nomeDisciplina));
 		professor = professorController.find(Utils.getId(nomeProfessor));
-		turma = turmaController.find(Utils.getId(codigoTurma));
 		
-		if(!professor.getTurmas().contains(turma)) {
-			disciplina.setTurma(turma);
-			professor.add(turma);
-			turma.add(professor);
+		if(!professor.getDisciplinas().contains(disciplina)) {
+			disciplina.add(professor);
+			professor.add(disciplina);
 			
 			disciplinaController.update(disciplina);
 			professorController.update(professor);
-			turmaController.update(turma);
 			
 			this.KeepMessages();
 			this.addInfoMessage("Professor cadastrado na disciplina com sucesso!");
@@ -83,13 +71,6 @@ public class CadastroProfessorDisciplinaBean extends GenericCadernetaBean implem
 			professores.add(p.getId() + " - " + p.getNome());
 		return professores;
 	}
-	
-	public List<String> getTurmas() {
-		List<String> turmas = new ArrayList<>();
-		for(Turma t: turmaController.findAll())
-			turmas.add(t.getId() + " - " + t.getCodigo());
-		return turmas;
-	}
 
 	public Disciplina getDisciplina() {
 		return disciplina;
@@ -107,14 +88,6 @@ public class CadastroProfessorDisciplinaBean extends GenericCadernetaBean implem
 		this.professor = professor;
 	}
 
-	public Turma getTurma() {
-		return turma;
-	}
-
-	public void setTurma(Turma turma) {
-		this.turma = turma;
-	}
-
 	public String getNomeDisciplina() {
 		return nomeDisciplina;
 	}
@@ -129,13 +102,5 @@ public class CadastroProfessorDisciplinaBean extends GenericCadernetaBean implem
 
 	public void setNomeProfessor(String nomeProfessor) {
 		this.nomeProfessor = nomeProfessor;
-	}
-
-	public String getCodigoTurma() {
-		return codigoTurma;
-	}
-
-	public void setCodigoTurma(String codigoTurma) {
-		this.codigoTurma = codigoTurma;
 	}
 }

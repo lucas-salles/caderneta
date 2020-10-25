@@ -1,10 +1,13 @@
 package br.edu.ifpb.pweb2.caderneta.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
 import javax.inject.Named;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 
 @Named
 @Entity
@@ -14,8 +17,8 @@ public class Professor extends Usuario {
 	private String nome;
 	private String email;
 	
-	@ManyToMany
-	private List<Turma> turmas;
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Set<Disciplina> disciplinas = new  HashSet<>();
 	
 	public Professor() {}
 	
@@ -25,18 +28,18 @@ public class Professor extends Usuario {
 		this.email = email;
 	}
 	
-	public void add(Turma t) {
-		turmas.add(t);
+	public void add(Disciplina d) {
+		disciplinas.add(d);
 	}
 	
-	public void remover(Turma t) {
-		turmas.remove(t);
+	public void remover(Disciplina d) {
+		disciplinas.remove(d);
 	}
 	
-	public Turma localizarTurma(int id) {
-		for(Turma t : turmas) {
-			if(t.getId() == id)
-				return t;
+	public Disciplina localizarDisciplina(int id) {
+		for(Disciplina d : disciplinas) {
+			if(d.getId() == id)
+				return d;
 		}
 		return null;
 	}
@@ -57,12 +60,12 @@ public class Professor extends Usuario {
 		this.email = email;
 	}
 
-	public List<Turma> getTurmas() {
-		return turmas;
+	public Set<Disciplina> getDisciplinas() {
+		return disciplinas;
 	}
 
-	public void setTurmas(List<Turma> turmas) {
-		this.turmas = turmas;
+	public void setDisciplinas(Set<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
 	}
 
 	@Override

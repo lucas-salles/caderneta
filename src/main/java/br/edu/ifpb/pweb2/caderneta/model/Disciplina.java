@@ -1,12 +1,15 @@
 package br.edu.ifpb.pweb2.caderneta.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Disciplina implements Serializable {
@@ -20,8 +23,11 @@ public class Disciplina implements Serializable {
 	private String curso;
 	private Integer cargaHoraria;
 	
-	@ManyToOne
+	@OneToOne
 	private Turma turma;
+	
+	@ManyToMany(mappedBy = "disciplinas")
+	private List<Professor> professores = new ArrayList<>();
 	
 	public Disciplina() {}
 	
@@ -30,6 +36,22 @@ public class Disciplina implements Serializable {
 		this.codigo = codigo;
 		this.curso = curso;
 		this.cargaHoraria = cargaHoraria;
+	}
+	
+	public void add(Professor p) {
+		professores.add(p);
+	}
+	
+	public void remover(Professor p) {
+		professores.remove(p);
+	}
+	
+	public Professor localizarProfessor(int id) {
+		for(Professor p : professores) {
+			if(p.getId() == id)
+				return p;
+		}
+		return null;
 	}
 
 	public Integer getId() {
@@ -78,6 +100,14 @@ public class Disciplina implements Serializable {
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
 	}
 
 	@Override

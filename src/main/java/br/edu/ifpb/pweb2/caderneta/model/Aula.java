@@ -1,13 +1,17 @@
 package br.edu.ifpb.pweb2.caderneta.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,11 +32,30 @@ public class Aula implements Serializable {
 	@ManyToOne
 	private Turma turma;
 	
+	@ManyToMany(mappedBy = "aulas", fetch=FetchType.EAGER)
+	private List<Aluno> alunos = new ArrayList<>();
+	
 	public Aula() {}
 
 	public Aula(String assunto, Date dataAula) {
 		this.assunto = assunto;
 		this.dataAula = dataAula;
+	}
+	
+	public void add(Aluno a) {
+		alunos.add(a);
+	}
+	
+	public void remover(Aluno a) {
+		alunos.remove(a);
+	}
+	
+	public Aluno localizarAluno(int id) {
+		for(Aluno a : alunos) {
+			if(a.getId() == id)
+				return a;
+		}
+		return null;
 	}
 
 	public Integer getId() {
@@ -67,8 +90,17 @@ public class Aula implements Serializable {
 		this.turma = turma;
 	}
 
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
 	@Override
 	public String toString() {
-		return "Aula [id=" + id + ", assunto=" + assunto + ", data=" + dataAula + "]";
+		return "Aula [id=" + id + ", assunto=" + assunto + ", dataAula=" + dataAula + ", turma=" + turma + ", alunos="
+				+ alunos + "]";
 	}
 }

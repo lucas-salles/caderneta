@@ -38,7 +38,14 @@ public class MatricularAlunoBean extends GenericCadernetaBean implements Seriali
 		aluno = alunoController.find(Utils.getId(nomeAluno));
 		turma = turmaController.find(Utils.getId(codigoTurma));
 		
-		aluno.setTurma(turma);
+		if(turma.getAlunos().contains(aluno)) {
+			this.KeepMessages();
+			this.addInfoMessage("Aluno já foi matriculado nessa turma!");
+			
+			return null;
+		}
+		
+		aluno.add(turma);
 		turma.add(aluno);
 		
 		alunoController.update(aluno);
@@ -60,7 +67,10 @@ public class MatricularAlunoBean extends GenericCadernetaBean implements Seriali
 	public List<String> getTurmas() {
 		List<String> turmas = new ArrayList<>();
 		for(Turma t: turmaController.findAll())
-			turmas.add(t.getId() + " - " + t.getCodigo());
+			if(t.getDisciplina() != null)
+				turmas.add(t.getId() + " - " + t.getCodigo() + "(" + t.getDisciplina().getNome() + ")");
+			else
+				turmas.add(t.getId() + " - " + t.getCodigo());
 		return turmas;
 	}
 

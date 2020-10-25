@@ -26,6 +26,15 @@
 						required="true" requiredMessage="Código é obrigatório!">
 					</p:inputText>
 				</div>
+				
+				<div class="ui-g-3">
+					<p:outputLabel value="Disicplina:" for="disciplina" />
+					<p:selectOneMenu id="disciplina" value="#{cadTurmaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
+						<f:selectItem noSelectionOption="true" 
+							itemLabel="--Selecione a disciplina--" itemValue="#{null}"/>
+						<f:selectItems value="#{cadTurmaBean.disciplinas}"/>
+					</p:selectOneMenu>
+				</div>
 			</div>
 			
 			<div class="ui-g ui-fluid">

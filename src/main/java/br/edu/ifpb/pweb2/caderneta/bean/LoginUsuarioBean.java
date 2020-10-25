@@ -3,6 +3,7 @@ package br.edu.ifpb.pweb2.caderneta.bean;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -34,7 +35,7 @@ public class LoginUsuarioBean extends GenericCadernetaBean implements Serializab
 	private UsuarioController usuarioController;
 
 	
-	public String valide() {
+	public String login() {
 		Usuario u = usuarioController.findByLoginAndPassword(login, senha);
 		
 		if(u != null) {
@@ -54,6 +55,12 @@ public class LoginUsuarioBean extends GenericCadernetaBean implements Serializab
 		
 		
 		return null;
+	}
+	
+	public String logout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		
+		return "/index?faces-redirect=true";
 	}
 
 

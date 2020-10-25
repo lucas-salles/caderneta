@@ -15,51 +15,63 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Discliplinas</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/coordenador/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
+	</header>
 	
-	<p>
-		<a href="cadDisciplina.xhtml">Nova disciplina</a>
-	</p>
+	<main class="container main">		
+		<p class="cad-button-green">
+			<a href="cadDisciplina.xhtml">Nova disciplina</a>
+		</p>
+		
+		<p:messages closable="true" errorStyle="color:red"
+			infoStyle="color:green" layout="table" />
 	
-	<p:messages closable="true" errorStyle="color:red"
-		infoStyle="color:green" layout="table" />
-
-	<p:panel id="panel" header="Disciplinas cadastradas"
-		style="background-color:#ededed">
-
-		<h:form id="cons-disciplina">
-			<p:dataTable value="#{consDisciplinaBean.disciplinas}" var="disciplina"
-				emptyMessage="Nenhuma disciplina cadastrada" rowHover="true">
-				<f:facet name="header">Disciplinas</f:facet>
-
-				<p:column headerText="ID">
-					#{disciplina.id}
-				</p:column>
-
-				<p:column headerText="Nome">
-					#{disciplina.nome}
-				</p:column>
-				
-				<p:column headerText="Código">
-					#{disciplina.codigo}
-				</p:column>
-				
-				<p:column headerText="Curso">
-					#{disciplina.curso}
-				</p:column>
-				
-				<p:column headerText="Carga horária">
-					#{disciplina.cargaHoraria}
-				</p:column>
-
-				<p:column headerText="Ações">
-					<p:commandButton action="#{consDisciplinaBean.excluir(disciplina)}"
-						title="Excluir" icon="fa fa-trash" ajax="false" />
-					<p:commandButton action="#{consDisciplinaBean.editar(disciplina)}"
-						title="Editar" icon="fa fa-edit" ajax="false" />
-				</p:column>
-			</p:dataTable>
-		</h:form>
-	</p:panel>
+		<p:panel id="panel" header="Disciplinas cadastradas"
+			style="background-color:#ededed">
+	
+			<h:form id="cons-disciplina">
+				<p:dataTable value="#{consDisciplinaBean.disciplinas}" var="disciplina"
+					emptyMessage="Nenhuma disciplina cadastrada" rowHover="true">
+					<f:facet name="header">Disciplinas</f:facet>
+	
+					<p:column headerText="ID">
+						#{disciplina.id}
+					</p:column>
+	
+					<p:column headerText="Nome">
+						#{disciplina.nome}
+					</p:column>
+					
+					<p:column headerText="Código">
+						#{disciplina.codigo}
+					</p:column>
+					
+					<p:column headerText="Curso">
+						#{disciplina.curso}
+					</p:column>
+					
+					<p:column headerText="Carga horária">
+						#{disciplina.cargaHoraria}
+					</p:column>
+	
+					<p:column headerText="Ações">
+						<p:commandButton action="#{consDisciplinaBean.excluir(disciplina)}"
+							title="Excluir" icon="fa fa-trash" ajax="false" />
+						<p:commandButton action="#{consDisciplinaBean.editar(disciplina)}"
+							title="Editar" icon="fa fa-edit" ajax="false" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</main>
 </h:body>
 </html>

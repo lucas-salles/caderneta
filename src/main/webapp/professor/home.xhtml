@@ -10,21 +10,39 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Olá, #{loginUsuarioBean.professor.nome}</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/professor/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
+	</header>
 	
-	<p:messages closable="true" errorStyle="color:red"
+	<main class="container main">
+		<h2>Painel do Professor</h2>
+		
+		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 		
-	<ul>
-		<li>
-			<a href="/caderneta/professor/regAula.xhtml">Registrar aula</a>
-		</li>
-		<li>
-			<a href="/caderneta/professor/aulas.xhtml">Aulas</a>
-		</li>
-		<li>
-			<a href="/caderneta/professor/turmas.xhtml">Suas turmas</a>
-		</li>
-	</ul>
+		<nav>
+			<h3>Ações</h3>
+			
+			<ul>
+				<li>
+					<a href="/caderneta/professor/regAula.xhtml">Registrar aula</a>
+				</li>
+				<li>
+					<a href="/caderneta/professor/aulas.xhtml">Aulas</a>
+				</li>
+				<li>
+					<a href="/caderneta/professor/turmas.xhtml">Suas turmas</a>
+				</li>
+			</ul>
+		</nav>
+	</main>
 </h:body>
 </html>

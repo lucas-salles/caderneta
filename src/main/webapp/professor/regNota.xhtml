@@ -10,41 +10,55 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Registrar Presença - #{regNotaBean.disciplina.nome}</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/professor/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
+	</header>
 	
-	<p:messages closable="true" errorStyle="color:red"
+	<main class="container main">
+		<h2>Registrar Presença - #{regNotaBean.disciplina.nome}</h2>
+		
+		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 		
 		<p:panel id="panel" header="Registrar nota"
 		style="background-color:#ededed">
 
-		<h:form id="reg-nota">
-			<p:dataTable value="#{regNotaBean.alunos}" var="aluno" rowIndexVar="index"
-				emptyMessage="Turma sem alunos" rowHover="true">
-				<f:facet name="header">Alunos</f:facet>
+			<h:form id="reg-nota">
+				<p:dataTable value="#{regNotaBean.alunos}" var="aluno" rowIndexVar="index"
+					emptyMessage="Turma sem alunos" rowHover="true">
+					<f:facet name="header">Alunos</f:facet>
+					
+					<p:column headerText="#">
+						#{index+1}
+					</p:column>
+	
+					<p:column headerText="Nome">
+						#{aluno.nome}
+					</p:column>
+					
+					<p:column headerText="Nota">
+						<p:inputNumber value="#{regNotaBean.alunoNota[aluno.id]}"
+							required="true" requiredMessage="Nota é obrigatória!">
+						</p:inputNumber>
+					</p:column>
+				</p:dataTable>
 				
-				<p:column headerText="#">
-					#{index+1}
-				</p:column>
-
-				<p:column headerText="Nome">
-					#{aluno.nome}
-				</p:column>
-				
-				<p:column headerText="Nota">
-					<p:inputNumber value="#{regNotaBean.alunoNota[aluno.id]}"
-						required="true" requiredMessage="Nota é obrigatória!">
-					</p:inputNumber>
-				</p:column>
-			</p:dataTable>
-			
-			<div class="ui-g ui-fluid">
-				<div class="ui-g-2">
-					<p:commandButton action="#{regNotaBean.registrar}" value="Registrar notas"
-						ajax="false" />
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-2">
+						<p:commandButton action="#{regNotaBean.registrar}" value="Registrar notas"
+							ajax="false" />
+					</div>
 				</div>
-			</div>
-		</h:form>
-	</p:panel>
+			</h:form>
+		</p:panel>
+	</main>	
 </h:body>
 </html>

@@ -10,28 +10,40 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Suas Notas</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/aluno/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
+	</header>
 	
-	<p:messages closable="true" errorStyle="color:red"
+	<main class="container main">				
+		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 
-	<p:panel id="panel" header="Notas"
-		style="background-color:#ededed">
-
-		<h:form id="cons-notas">
-			<p:dataTable value="#{consNotaBean.notas}" var="nota"
-				emptyMessage="Nenhuma nota registrada" rowHover="true">
-				<f:facet name="header">Notas</f:facet>
-
-				<p:column headerText="Nota">
-					#{nota.nota}
-				</p:column>
-				
-				<p:column headerText="Disciplina">
-					#{nota.turma.disciplina.nome}
-				</p:column>
-			</p:dataTable>
-		</h:form>
-	</p:panel>
+		<p:panel id="panel" header="Notas"
+			style="background-color:#ededed">
+	
+			<h:form id="cons-notas">
+				<p:dataTable value="#{consNotaBean.notas}" var="nota"
+					emptyMessage="Nenhuma nota registrada" rowHover="true">
+					<f:facet name="header">Notas</f:facet>
+	
+					<p:column headerText="Nota">
+						#{nota.nota}
+					</p:column>
+					
+					<p:column headerText="Disciplina">
+						#{nota.turma.disciplina.nome}
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</main>
 </h:body>
 </html>

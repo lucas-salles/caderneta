@@ -10,34 +10,46 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Suas Faltas</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/aluno/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
+	</header>
 	
-	<p:messages closable="true" errorStyle="color:red"
+	<main class="container main">				
+		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 
-	<p:panel id="panel" header="Faltas"
-		style="background-color:#ededed">
-
-		<h:form id="cons-faltas">
-			<p:dataTable value="#{consFaltaBean.aulas}" var="aula"
-				emptyMessage="Nenhuma falta registrada" rowHover="true">
-				<f:facet name="header">Faltas</f:facet>
-				
-				<p:column headerText="Assunto da aula">
-					#{aula.assunto}
-				</p:column>
-
-				<p:column headerText="Data da aula" styleClass="columnCenter">
-					<h:outputText value="#{aula.dataAula}">
-						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
-					</h:outputText>
-				</p:column>
-				
-				<p:column headerText="Disciplina">
-					#{aula.turma.disciplina.nome}
-				</p:column>
-			</p:dataTable>
-		</h:form>
-	</p:panel>
+		<p:panel id="panel" header="Faltas"
+			style="background-color:#ededed">
+	
+			<h:form id="cons-faltas">
+				<p:dataTable value="#{consFaltaBean.aulas}" var="aula"
+					emptyMessage="Nenhuma falta registrada" rowHover="true">
+					<f:facet name="header">Faltas</f:facet>
+					
+					<p:column headerText="Assunto da aula">
+						#{aula.assunto}
+					</p:column>
+	
+					<p:column headerText="Data da aula" styleClass="columnCenter">
+						<h:outputText value="#{aula.dataAula}">
+							<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-3" />
+						</h:outputText>
+					</p:column>
+					
+					<p:column headerText="Disciplina">
+						#{aula.turma.disciplina.nome}
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</main>
 </h:body>
 </html>

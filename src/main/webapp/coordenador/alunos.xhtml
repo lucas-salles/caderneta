@@ -14,47 +14,62 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Alunos</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/coordenador/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
+	</header>
 	
-	<p>
-		<a href="cadAluno.xhtml">Novo aluno</a>
-	</p>
+	<main class="container main">		
+		<p class="cad-button-green">
+			<a href="cadAluno.xhtml">Novo aluno</a>
+		</p>
+		
+		<p:messages closable="true" errorStyle="color:red"
+			infoStyle="color:green" layout="table" />
 	
-	<p:messages closable="true" errorStyle="color:red"
+		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 
-	<p:panel id="panel" header="Alunos cadastrados"
-		style="background-color:#ededed">
-
-		<h:form id="cons-aluno">
-			<p:dataTable value="#{consAlunoBean.alunos}" var="aluno"
-				emptyMessage="Nenhum aluno cadastrado" rowHover="true">
-				<f:facet name="header">Alunos</f:facet>
-
-				<p:column headerText="ID">
-					#{aluno.id}
-				</p:column>
-
-				<p:column headerText="Login">
-					#{aluno.login}
-				</p:column>
-				
-				<p:column headerText="Nome">
-					#{aluno.nome}
-				</p:column>
-				
-				<p:column headerText="Matrícula">
-					#{aluno.matricula}
-				</p:column>
-
-				<p:column headerText="Ações">
-					<p:commandButton action="#{consAlunoBean.excluir(aluno)}"
-						title="Excluir" icon="fa fa-trash" ajax="false" />
-					<p:commandButton action="#{consAlunoBean.editar(aluno)}"
-						title="Editar" icon="fa fa-edit" ajax="false" />
-				</p:column>
-			</p:dataTable>
-		</h:form>
-	</p:panel>
+		<p:panel id="panel" header="Alunos cadastrados"
+			style="background-color:#ededed">
+	
+			<h:form id="cons-aluno">
+				<p:dataTable value="#{consAlunoBean.alunos}" var="aluno"
+					emptyMessage="Nenhum aluno cadastrado" rowHover="true">
+					<f:facet name="header">Alunos</f:facet>
+	
+					<p:column headerText="ID">
+						#{aluno.id}
+					</p:column>
+	
+					<p:column headerText="Login">
+						#{aluno.login}
+					</p:column>
+					
+					<p:column headerText="Nome">
+						#{aluno.nome}
+					</p:column>
+					
+					<p:column headerText="Matrícula">
+						#{aluno.matricula}
+					</p:column>
+	
+					<p:column headerText="Ações">
+						<p:commandButton action="#{consAlunoBean.excluir(aluno)}"
+							title="Excluir" icon="fa fa-trash" ajax="false" />
+						<p:commandButton action="#{consAlunoBean.editar(aluno)}"
+							title="Editar" icon="fa fa-edit" ajax="false" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</main>
 </h:body>
 </html>

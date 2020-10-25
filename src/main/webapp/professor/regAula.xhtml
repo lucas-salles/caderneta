@@ -11,24 +11,34 @@
 	<h:outputScript library="js" name="app.js" />
 </h:head>	
 <h:body>
-	<header>
-		<h1>Registrar Aula</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/professor/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
 	</header>
 	
-	<main>
+	<main class="container main">
+		<h2>Registrar Aula</h2>
+		
 		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 		
 		<h:form id="reg-aula">
 			<div class="ui-g ui-fluid">
-				<div class="ui-g-3">
+				<div class="ui-g-4">
 					<p:outputLabel value="Assunto:" for="assunto" />
 					<p:inputText value="#{regAulaBean.aula.assunto}" id="assunto"
 						required="true" requiredMessage="Assunto da aula é obrigatório!">
 					</p:inputText>
 				</div>
 				
-				<div class="ui-g-3">
+				<div class="ui-g-4">
 					<p:outputLabel value="Data da Aula:" for="data-aula" />
 					<p:calendar required="true"
 						requiredMessage="Data da aula é obrigatória" id="data-aula"
@@ -36,7 +46,7 @@
 						value="#{regAulaBean.aula.dataAula}" showOn="button" />
 				</div>
 				
-				<div class="ui-g-3">
+				<div class="ui-g-4">
 					<p:outputLabel value="Disicplina:" for="disciplina" />
 					<p:selectOneMenu id="disciplina" value="#{regAulaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
 						<f:selectItem noSelectionOption="true" 

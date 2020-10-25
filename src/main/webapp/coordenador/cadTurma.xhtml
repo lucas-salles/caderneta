@@ -10,24 +10,34 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>	
 <h:body>
-	<header>
-		<h1>Cadastro de Turma</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/coordenador/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
 	</header>
 	
-	<main>
+	<main class="container main">
+		<h2>Cadastro de Turma</h2>
+		
 		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 		
 		<h:form id="cad-turma">
 			<div class="ui-g ui-fluid">
-				<div class="ui-g-3">
+				<div class="ui-g-6">
 					<p:outputLabel value="Código:" for="codigo" />
 					<p:inputText value="#{cadTurmaBean.turma.codigo}" id="codigo"
 						required="true" requiredMessage="Código é obrigatório!">
 					</p:inputText>
 				</div>
 				
-				<div class="ui-g-3">
+				<div class="ui-g-6">
 					<p:outputLabel value="Disicplina:" for="disciplina" />
 					<p:selectOneMenu id="disciplina" value="#{cadTurmaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
 						<f:selectItem noSelectionOption="true" 

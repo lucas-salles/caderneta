@@ -10,11 +10,21 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>	
 <h:body>
-	<header>
-		<h1>Cadastro de Disciplina</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/coordenador/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
 	</header>
 	
-	<main>
+	<main class="container main">
+		<h2>Cadastro de Disciplina</h2>
+		
 		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 		
@@ -43,9 +53,9 @@
 				
 				<div class="ui-g-3">
 					<p:outputLabel value="Carga horária:" for="cargaHoraria" />
-					<p:inputText value="#{cadDisciplinaBean.disciplina.cargaHoraria}" id="cargaHoraria"
+					<p:inputNumber value="#{cadDisciplinaBean.disciplina.cargaHoraria}" id="cargaHoraria"
 						required="true" requiredMessage="Carga horária é obrigatória!">
-					</p:inputText>
+					</p:inputNumber>
 				</div>
 			</div>
 			

@@ -15,37 +15,49 @@
 	<h:outputStylesheet library="css" name="master.css" />
 </h:head>
 <h:body>
-	<h1>Suas Turmas</h1>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/professor/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
+	</header>
 	
-	<p:messages closable="true" errorStyle="color:red"
+	<main class="container main">		
+		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 
-	<p:panel id="panel" header="Turmas"
-		style="background-color:#ededed">
-
-		<h:form id="cons-turmas">
-			<p:dataTable value="#{consTurmaBean.turmas}" var="turma"
-				emptyMessage="Nenhuma turma registrada para você" rowHover="true">
-				<f:facet name="header">Turma</f:facet>
-
-				<p:column headerText="ID">
-					#{turma.id}
-				</p:column>
-
-				<p:column headerText="Código">
-					#{turma.codigo}
-				</p:column>
-				
-				<p:column headerText="Disciplina">
-					#{turma.disciplina.nome}
-				</p:column>
-				
-				<p:column headerText="Ações">
-					<p:commandButton action="#{consTurmaBean.regNota(turma.disciplina)}" value="Registrar nota"
-						ajax="false" />
-				</p:column>
-			</p:dataTable>
-		</h:form>
-	</p:panel>
+		<p:panel id="panel" header="Turmas"
+			style="background-color:#ededed">
+	
+			<h:form id="cons-turmas">
+				<p:dataTable value="#{consTurmaBean.turmas}" var="turma"
+					emptyMessage="Nenhuma turma registrada para você" rowHover="true">
+					<f:facet name="header">Turma</f:facet>
+	
+					<p:column headerText="ID">
+						#{turma.id}
+					</p:column>
+	
+					<p:column headerText="Código">
+						#{turma.codigo}
+					</p:column>
+					
+					<p:column headerText="Disciplina">
+						#{turma.disciplina.nome}
+					</p:column>
+					
+					<p:column headerText="Ações">
+						<p:commandButton action="#{consTurmaBean.regNota(turma.disciplina)}" value="Registrar nota"
+							ajax="false" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</main>
 </h:body>
 </html>

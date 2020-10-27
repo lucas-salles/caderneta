@@ -19,7 +19,7 @@
 	<header class="header">
 		<div class="container header-block">
 			<h1>
-				<a href="/caderneta/coordenador/home.xhtml">Caderneta</a>
+				<a href="/caderneta/aluno/home.xhtml">Caderneta</a>
 			</h1>
 			
 			<h:form id="logout">
@@ -36,6 +36,7 @@
 			<h2>#{alunoDisciplinaBean.disciplina.codigo} - #{alunoDisciplinaBean.disciplina.nome}</h2>
 			<p>Curso: #{alunoDisciplinaBean.disciplina.curso}</p>
 			<p>Carga horária: #{alunoDisciplinaBean.disciplina.cargaHoraria} hrs</p>
+			<p>Média: #{alunoDisciplinaBean.media}</p>
 			<p>Status: #{alunoDisciplinaBean.status}</p>
 		</div>
 	</main>

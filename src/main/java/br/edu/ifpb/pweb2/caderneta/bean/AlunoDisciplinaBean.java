@@ -17,6 +17,7 @@ public class AlunoDisciplinaBean extends GenericCadernetaBean implements Seriali
 	
 	private Integer id;
 	private String status;
+	private Double media = 0.0;
 	
 	@Inject
 	private Disciplina disciplina;
@@ -46,7 +47,7 @@ public class AlunoDisciplinaBean extends GenericCadernetaBean implements Seriali
 					nmNotas++;
 				}
 			}
-			Double media = somaNotas / nmNotas;
+			media = somaNotas / nmNotas;
 			if(media >= 7) {
 				status = "Aprovado";
 			} else if(media >= 4) {
@@ -79,5 +80,13 @@ public class AlunoDisciplinaBean extends GenericCadernetaBean implements Seriali
 
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
+	}
+
+	public Double getMedia() {
+		return media;
+	}
+
+	public void setMedia(Double media) {
+		this.media = media;
 	}
 }

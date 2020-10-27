@@ -34,14 +34,21 @@ public class ConsultaTurmaBean extends GenericCadernetaBean implements Serializa
 	}
 	
 	public String registrarNota(Disciplina disciplina) {
+		if(!disciplina.getTurma().getAtivo()) {
+			this.KeepMessages();
+			this.addInfoMessage("Você já fechou as notas desta disciplina!");
+			
+			return null;
+		}
+		
 		this.putFlash("disciplina", disciplina);
 		return "regNota?faces-redirect=true";
 	}
 	
-	public String fecharDisciplina(Disciplina disciplina) {
+	public String fecharNotas(Disciplina disciplina) {
 		if(!disciplina.getTurma().getAtivo()) {
 			this.KeepMessages();
-			this.addInfoMessage("Disciplina já foi fechada!");
+			this.addInfoMessage("Você já fechou as notas desta disciplina!");
 			
 			return null;
 		}

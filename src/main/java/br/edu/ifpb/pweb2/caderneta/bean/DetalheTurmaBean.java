@@ -1,6 +1,7 @@
 package br.edu.ifpb.pweb2.caderneta.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
@@ -16,7 +17,7 @@ import br.edu.ifpb.pweb2.caderneta.model.Disciplina;
 public class DetalheTurmaBean extends GenericCadernetaBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private List<Aluno> alunos;
+	private List<Aluno> alunos = new ArrayList<>();
 	private Integer id;
 	
 	@Inject
@@ -28,7 +29,12 @@ public class DetalheTurmaBean extends GenericCadernetaBean implements Serializab
 	public void init() {
 		if(id != null) {
 			disciplina = disciplinaController.find(id);
-			alunos = disciplina.getTurma().getAlunos();
+			if(disciplina.getTurma() != null) {
+				for(Aluno a: disciplina.getTurma().getAlunos()) {
+					if(!alunos.contains(a))
+						alunos.add(a);
+				}				
+			}
 		}
 	}
 

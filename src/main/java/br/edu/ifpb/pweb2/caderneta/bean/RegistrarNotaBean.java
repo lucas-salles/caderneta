@@ -11,9 +11,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.edu.ifpb.pweb2.caderneta.controller.AlunoController;
+import br.edu.ifpb.pweb2.caderneta.controller.AvaliacaoController;
 import br.edu.ifpb.pweb2.caderneta.controller.NotaController;
 import br.edu.ifpb.pweb2.caderneta.controller.TurmaController;
 import br.edu.ifpb.pweb2.caderneta.model.Aluno;
+import br.edu.ifpb.pweb2.caderneta.model.Avaliacao;
 import br.edu.ifpb.pweb2.caderneta.model.Disciplina;
 import br.edu.ifpb.pweb2.caderneta.model.Nota;
 import br.edu.ifpb.pweb2.caderneta.model.Turma;
@@ -31,6 +33,9 @@ public class RegistrarNotaBean extends GenericCadernetaBean implements Serializa
 	
 	@Inject
 	private Turma turma;
+	
+	@Inject
+	private Avaliacao avaliacao;
 
 	@Inject
 	private NotaController notaController;
@@ -40,6 +45,9 @@ public class RegistrarNotaBean extends GenericCadernetaBean implements Serializa
 
 	@Inject
 	private TurmaController turmaController;
+	
+	@Inject
+	private AvaliacaoController avaliacaoController;
 
 	@PostConstruct
 	public void init() {
@@ -61,18 +69,23 @@ public class RegistrarNotaBean extends GenericCadernetaBean implements Serializa
 		
 		Aluno aluno = null;
 		Nota nota = null;
+		avaliacao = avaliacaoController.insert(avaliacao);
 		for (Integer id : alunoNota.keySet()) {
 			aluno = alunoController.find(id);
 			nota = new Nota(Double.parseDouble(alunoNota.get(id)));
 			nota = notaController.insert(nota);
 			aluno.add(nota);
 			nota.setAluno(aluno);
-			nota.setTurma(turma);
-			turma.add(nota);
+			nota.setAvaliacao(avaliacao);
+			avaliacao.add(nota);
+			avaliacao.setTurma(turma);
+			turma.add(avaliacao);
 
 			alunoController.update(aluno);
 			notaController.update(nota);
+			avaliacaoController.update(avaliacao);
 			turmaController.update(turma);
+			
 			
 			nota = null;
 		}
@@ -114,5 +127,13 @@ public class RegistrarNotaBean extends GenericCadernetaBean implements Serializa
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
+	}
+
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
+	}
+
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
 	}
 }

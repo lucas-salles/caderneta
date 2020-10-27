@@ -35,23 +35,33 @@
 					<f:facet name="header">Disciplinas</f:facet>
 	
 					<p:column headerText="ID">
-						#{disciplina.id}
+						<p:link outcome="disciplina" value="#{disciplina.id}">
+						    <f:param name="id" value="#{disciplina.id}" />
+						</p:link>
 					</p:column>
 	
 					<p:column headerText="Nome">
-						#{disciplina.nome}
+						<p:link outcome="disciplina" value="#{disciplina.nome}">
+						    <f:param name="id" value="#{disciplina.id}" />
+						</p:link>
 					</p:column>
 					
 					<p:column headerText="Código">
-						#{disciplina.codigo}
+						<p:link outcome="disciplina" value="#{disciplina.codigo}">
+						    <f:param name="id" value="#{disciplina.id}" />
+						</p:link>
 					</p:column>
 					
 					<p:column headerText="Curso">
-						#{disciplina.curso}
+						<p:link outcome="disciplina" value="#{disciplina.curso}">
+						    <f:param name="id" value="#{disciplina.id}" />
+						</p:link>
 					</p:column>
 					
 					<p:column headerText="Carga horária">
-						#{disciplina.cargaHoraria}
+						<p:link outcome="disciplina" value="#{disciplina.cargaHoraria}">
+						    <f:param name="id" value="#{disciplina.id}" />
+						</p:link>
 					</p:column>
 				</p:dataTable>
 			</h:form>

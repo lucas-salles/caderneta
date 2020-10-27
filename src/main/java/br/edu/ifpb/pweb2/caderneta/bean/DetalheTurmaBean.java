@@ -7,7 +7,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.ifpb.pweb2.caderneta.controller.AlunoController;
 import br.edu.ifpb.pweb2.caderneta.controller.DisciplinaController;
 import br.edu.ifpb.pweb2.caderneta.model.Aluno;
 import br.edu.ifpb.pweb2.caderneta.model.Disciplina;

@@ -23,6 +23,7 @@ public class Turma implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String codigo;
+	private Boolean ativo = true;
 	
 	@OneToOne(mappedBy = "turma")
 	private Disciplina disciplina;
@@ -34,7 +35,7 @@ public class Turma implements Serializable {
 	private List<Aula> aulas = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "turma", fetch=FetchType.EAGER)
-	private Set<Nota> notas = new  HashSet<>();
+	private Set<Avaliacao> avaliacoes = new  HashSet<>();
 	
 	public Turma() {}
 	
@@ -74,18 +75,18 @@ public class Turma implements Serializable {
 		return null;
 	}
 	
-	public void add(Nota n) {
-		notas.add(n);
+	public void add(Avaliacao a) {
+		avaliacoes.add(a);
 	}
 	
-	public void remover(Nota n) {
-		notas.remove(n);
+	public void remover(Avaliacao a) {
+		avaliacoes.remove(a);
 	}
 	
-	public Nota localizarNota(int id) {
-		for(Nota n : notas) {
-			if(n.getId() == id)
-				return n;
+	public Avaliacao localizarAvaliacao(int id) {
+		for(Avaliacao a : avaliacoes) {
+			if(a.getId() == id)
+				return a;
 		}
 		return null;
 	}
@@ -104,6 +105,14 @@ public class Turma implements Serializable {
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public Disciplina getDisciplina() {
@@ -130,16 +139,16 @@ public class Turma implements Serializable {
 		this.aulas = aulas;
 	}
 
-	public Set<Nota> getNotas() {
-		return notas;
+	public Set<Avaliacao> getAvaliacoes() {
+		return avaliacoes;
 	}
 
-	public void setNotas(Set<Nota> notas) {
-		this.notas = notas;
+	public void setAvaliacoes(Set<Avaliacao> avaliacoes) {
+		this.avaliacoes = avaliacoes;
 	}
 
 	@Override
 	public String toString() {
-		return "Turma [id=" + id + ", codigo=" + codigo + "]";
+		return "Turma [id=" + id + ", codigo=" + codigo + ", ativo=" + ativo + ", disciplina=" + disciplina + "]";
 	}
 }

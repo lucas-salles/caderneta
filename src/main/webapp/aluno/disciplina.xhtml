@@ -6,8 +6,8 @@
       xmlns:p="http://primefaces.org/ui">
 
 <f:metadata>
-	<f:viewParam name="id" value="#{detalheTurmaBean.id}" />
-	<f:viewAction action="#{detalheTurmaBean.init}" />
+	<f:viewParam name="id" value="#{alunoDisciplinaBean.id}" />
+	<f:viewAction action="#{alunoDisciplinaBean.init}" />
 </f:metadata>
 
 <h:head>
@@ -29,37 +29,15 @@
 	</header>
 	
 	<main class="container main">		
-		<div class="disc-info">
-			<h2>#{detalheTurmaBean.disciplina.codigo} - #{detalheTurmaBean.disciplina.nome}</h2>
-			<p>Curso: #{detalheTurmaBean.disciplina.curso}</p>
-			<p>Carga horária: #{detalheTurmaBean.disciplina.cargaHoraria} hrs</p>
-		</div>
-		
 		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
 		
-		<p:panel id="panel" header="Alunos matriculados"
-			style="background-color:#ededed">
-	
-			<h:form id="cons-turma-alunos">
-				<p:dataTable value="#{detalheTurmaBean.alunos}" var="aluno"
-					emptyMessage="Nenhum aluno matriculado nessa disciplina" rowHover="true">
-					<f:facet name="header">Aluno</f:facet>
-	
-					<p:column headerText="ID">
-						#{aluno.id}
-					</p:column>
-	
-					<p:column headerText="Nome">
-						#{aluno.nome}
-					</p:column>
-					
-					<p:column headerText="Matrícula">
-						#{aluno.matricula}
-					</p:column>
-				</p:dataTable>
-			</h:form>
-		</p:panel>
+		<div class="disc-info">
+			<h2>#{alunoDisciplinaBean.disciplina.codigo} - #{alunoDisciplinaBean.disciplina.nome}</h2>
+			<p>Curso: #{alunoDisciplinaBean.disciplina.curso}</p>
+			<p>Carga horária: #{alunoDisciplinaBean.disciplina.cargaHoraria} hrs</p>
+			<p>Status: #{alunoDisciplinaBean.status}</p>
+		</div>
 	</main>
 </h:body>
 </html>

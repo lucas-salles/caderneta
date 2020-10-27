@@ -29,22 +29,22 @@
 		infoStyle="color:green" layout="table" />
 		
 		<h:form id="cad-prof-disciplina">
-			<div class="ui-g ui-fluid">	
-				<div class="ui-g-6">
-					<p:outputLabel value="Disicplina:" for="disciplina" />
-					<p:selectOneMenu id="disciplina" value="#{cadProfDisciplinaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
-						<f:selectItem noSelectionOption="true" 
-							itemLabel="--Selecione a disciplina--" itemValue="#{null}"/>
-						<f:selectItems value="#{cadProfDisciplinaBean.disciplinas}"/>
-					</p:selectOneMenu>
-				</div>
-				
+			<div class="ui-g ui-fluid">
 				<div class="ui-g-6">
 					<p:outputLabel value="Professores:" for="professor" />
 					<p:selectOneMenu id="professor" value="#{cadProfDisciplinaBean.nomeProfessor}" rendered="true" requiredMessage="Professor é obrigatório">
 						<f:selectItem noSelectionOption="true" 
 							itemLabel="--Selecione o professor--" itemValue="#{null}"/>
 						<f:selectItems value="#{cadProfDisciplinaBean.professores}"/>
+					</p:selectOneMenu>
+				</div>
+				
+				<div class="ui-g-6">
+					<p:outputLabel value="Disicplina:" for="disciplina" />
+					<p:selectOneMenu id="disciplina" value="#{cadProfDisciplinaBean.nomeDisciplina}" rendered="true" requiredMessage="Disciplina é obrigatória">
+						<f:selectItem noSelectionOption="true" 
+							itemLabel="--Selecione a disciplina--" itemValue="#{null}"/>
+						<f:selectItems value="#{cadProfDisciplinaBean.disciplinas}"/>
 					</p:selectOneMenu>
 				</div>
 			</div>

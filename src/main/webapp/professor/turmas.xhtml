@@ -69,7 +69,9 @@
 					</p:column>
 					
 					<p:column headerText="Ações">
-						<p:commandButton action="#{consTurmaBean.regNota(turma.disciplina)}" value="Registrar nota"
+						<p:commandButton action="#{consTurmaBean.registrarNota(turma.disciplina)}" value="Registrar nota"
+							ajax="false" />
+						<p:commandButton action="#{consTurmaBean.fecharDisciplina(turma.disciplina)}" value="Fechar disciplina"
 							ajax="false" />
 					</p:column>
 				</p:dataTable>

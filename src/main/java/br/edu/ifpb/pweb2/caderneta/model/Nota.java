@@ -21,7 +21,7 @@ public class Nota implements Serializable {
 	private Aluno aluno;
 	
 	@ManyToOne
-	private Turma turma;
+	private Avaliacao avaliacao;
 	
 	public Nota() {}
 	
@@ -58,11 +58,11 @@ public class Nota implements Serializable {
 		this.aluno = aluno;
 	}
 
-	public Turma getTurma() {
-		return turma;
+	public Avaliacao getAvaliacao() {
+		return avaliacao;
 	}
 
-	public void setTurma(Turma turma) {
-		this.turma = turma;
+	public void setAvaliacao(Avaliacao avaliacao) {
+		this.avaliacao = avaliacao;
 	}
 }

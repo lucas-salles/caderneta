@@ -23,7 +23,7 @@
 	</header>
 	
 	<main class="container main">
-		<h2>Registrar Presença - #{regNotaBean.disciplina.nome}</h2>
+		<h2>Registrar Nota - #{regNotaBean.disciplina.nome}</h2>
 		
 		<p:messages closable="true" errorStyle="color:red"
 		infoStyle="color:green" layout="table" />
@@ -32,6 +32,15 @@
 		style="background-color:#ededed">
 
 			<h:form id="reg-nota">
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-3">
+						<p:outputLabel value="Nome da avaliação:" for="avaliacao" />
+						<p:inputText value="#{regNotaBean.avaliacao.nome}" id="avaliacao"
+							required="true" requiredMessage="Nome da avaliação é obrigatório!">
+						</p:inputText>
+					</div>
+				</div>
+				
 				<p:dataTable value="#{regNotaBean.alunos}" var="aluno" rowIndexVar="index"
 					emptyMessage="Turma sem alunos" rowHover="true">
 					<f:facet name="header">Alunos</f:facet>

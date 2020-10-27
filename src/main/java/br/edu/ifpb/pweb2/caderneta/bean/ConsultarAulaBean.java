@@ -24,6 +24,9 @@ public class ConsultarAulaBean extends GenericCadernetaBean implements Serializa
 	private AulaController aulaController;
 	
 	@Inject
+	private Disciplina disciplina;
+	
+	@Inject
 	private LoginUsuarioBean loginUsuarioBean;
 	
 	public void init() {
@@ -42,7 +45,9 @@ public class ConsultarAulaBean extends GenericCadernetaBean implements Serializa
 			this.addInfoMessage("A chamada já foi feita para essa aula!");
 			return null;
 		}
+		disciplina = aula.getTurma().getDisciplina();
 		this.putFlash("aula", aula);
+		this.putFlash("disciplina", disciplina);
 		return "regPresenca?faces-redirect=true";
 	}
 
@@ -60,5 +65,13 @@ public class ConsultarAulaBean extends GenericCadernetaBean implements Serializa
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 }

@@ -56,6 +56,7 @@ public class RegistrarAulaBean extends GenericCadernetaBean implements Serializa
 		this.addInfoMessage("Aula registrada com sucesso!");
 		
 		this.putFlash("aula", aula);
+		this.putFlash("disciplina", disciplina);
 		return "regPresenca?faces-redirect=true";
 	}
 	

@@ -14,6 +14,7 @@ import br.edu.ifpb.pweb2.caderneta.controller.AlunoController;
 import br.edu.ifpb.pweb2.caderneta.controller.AulaController;
 import br.edu.ifpb.pweb2.caderneta.model.Aluno;
 import br.edu.ifpb.pweb2.caderneta.model.Aula;
+import br.edu.ifpb.pweb2.caderneta.model.Disciplina;
 
 @Named(value = "regPresencaBean")
 @ViewScoped
@@ -26,6 +27,9 @@ public class RegistrarPresencaBean extends GenericCadernetaBean implements Seria
 	@Inject
 	private Aula aula;
 	
+	@Inject
+	private Disciplina disciplina;
+	
 	@Inject 
 	private AlunoController alunoController;
 	
@@ -35,9 +39,13 @@ public class RegistrarPresencaBean extends GenericCadernetaBean implements Seria
 	@PostConstruct
 	public void init() {
 		Aula aulaFlash = (Aula) this.getFlash("aula");
+		Disciplina disciplinaFlash = (Disciplina) this.getFlash("disciplina");
 		if(aulaFlash != null) {
 			this.aula = aulaFlash;
 			alunos = aula.getTurma().getAlunos();
+		}
+		if(disciplinaFlash != null) {
+			this.disciplina = disciplinaFlash;
 		}
 	}
 	
@@ -80,5 +88,13 @@ public class RegistrarPresencaBean extends GenericCadernetaBean implements Seria
 
 	public void setChecked(Map<Integer, Boolean> checked) {
 		this.checked = checked;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 }

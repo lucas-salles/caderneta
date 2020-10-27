@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:metadata>
+	<f:viewParam name="id" value="#{detalheTurmaBean.id}" />
+	<f:viewAction action="#{detalheTurmaBean.init}" />
+</f:metadata>
+
+<h:head>
+	<title>Caderneta - Turma</title>
+	<h:outputStylesheet library="css" name="master.css" />
+	<h:outputStylesheet library="css" name="turma-detalhe.css" />
+</h:head>
+<h:body>
+	<header class="header">
+		<div class="container header-block">
+			<h1>
+				<a href="/caderneta/professor/home.xhtml">Caderneta</a>
+			</h1>
+			
+			<h:form id="logout">
+				<p:commandButton value="Sair" action="#{loginUsuarioBean.logout}" icon="fa fa-sign-out" ajax="false" />
+			</h:form>
+		</div>
+	</header>
+	
+	<main class="container main">		
+		<div class="disc-info">
+			<h2>#{detalheTurmaBean.disciplina.codigo} - #{detalheTurmaBean.disciplina.nome}</h2>
+			<p>Curso: #{detalheTurmaBean.disciplina.curso}</p>
+			<p>Carga horária: #{detalheTurmaBean.disciplina.cargaHoraria} hrs</p>
+		</div>
+		
+		<p:messages closable="true" errorStyle="color:red"
+		infoStyle="color:green" layout="table" />
+		
+		<p:panel id="panel" header="Alunos matriculados"
+			style="background-color:#ededed">
+	
+			<h:form id="cons-turma-alunos">
+				<p:dataTable value="#{detalheTurmaBean.alunos}" var="aluno"
+					emptyMessage="Nenhum aluno matriculado nessa disciplina" rowHover="true">
+					<f:facet name="header">Aluno</f:facet>
+	
+					<p:column headerText="ID">
+						#{aluno.id}
+					</p:column>
+	
+					<p:column headerText="Nome">
+						#{aluno.nome}
+					</p:column>
+					
+					<p:column headerText="Matrícula">
+						#{aluno.matricula}
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</p:panel>
+	</main>
+</h:body>
+</html>

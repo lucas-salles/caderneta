@@ -1,0 +1,12 @@
+.disc-info {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+
+.disc-info h2 {
+	margin-bottom: 0;
+}
+
+.disc-info p {
+	font-size: 1.4rem;
+}

@@ -6,7 +6,6 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 <f:metadata>
-	<f:viewParam name="id" value="#{consTurmaBea.id}" />
 	<f:viewAction action="#{consTurmaBean.init}" />
 </f:metadata>
 
@@ -40,23 +39,33 @@
 					<f:facet name="header">Turma</f:facet>
 	
 					<p:column headerText="ID">
-						#{turma.id}
+						<p:link outcome="turma" value="#{turma.id}">
+						    <f:param name="id" value="#{turma.id}" />
+						</p:link>
 					</p:column>
 	
 					<p:column headerText="Código">
-						#{turma.codigo}
+						<p:link outcome="turma" value="#{turma.codigo}">
+						    <f:param name="id" value="#{turma.id}" />
+						</p:link>
 					</p:column>
 					
 					<p:column headerText="Disciplina">
-						#{turma.disciplina.nome}
+						<p:link outcome="turma" value="#{turma.disciplina.nome}">
+						    <f:param name="id" value="#{turma.id}" />
+						</p:link>
 					</p:column>
 					
 					<p:column headerText="Carga horária">
-						#{turma.disciplina.cargaHoraria}
+						<p:link outcome="turma" value="#{turma.disciplina.cargaHoraria}">
+						    <f:param name="id" value="#{turma.id}" />
+						</p:link>
 					</p:column>
 					
 					<p:column headerText="Alunos matrículados">
-						#{turma.alunos.size()}
+						<p:link outcome="turma" value="#{turma.alunos.size()}">
+						    <f:param name="id" value="#{turma.id}" />
+						</p:link>
 					</p:column>
 					
 					<p:column headerText="Ações">

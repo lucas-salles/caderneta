@@ -62,6 +62,8 @@ public class RegistrarPresencaBean extends GenericCadernetaBean implements Seria
 			}
 		}
 		checked.clear();
+		
+		this.KeepMessages();
 		this.addInfoMessage("Presença registrada com sucesso!");
 		return "/professor/home?faces-redirect=true";
 	}
